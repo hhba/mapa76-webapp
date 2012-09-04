@@ -18,6 +18,10 @@ class Document
 
   has_and_belongs_to_many :people, index: true
 
+  def self.status
+    all.map { |document| document.status }
+  end
+
   def status
     {
       :title => title, :category => category, :percentage => percentage,

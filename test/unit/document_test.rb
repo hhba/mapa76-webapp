@@ -13,10 +13,13 @@ class DocumentTest < ActiveSupport::TestCase
     end
 
     should "Return a hash with the status on each document" do
-      assert_equal 100, @document.status[:percentage]
-      assert_equal @document.title, @document.status[:title]
-      assert_equal true, @document.status[:geocoded]
-      assert_equal 'Veredicto', @document.status[:category]
+      assert_instance_of Array, Document.status
+      status = Document.status.first
+
+      assert_equal 100, status[:percentage]
+      assert_equal @document.title, status[:title]
+      assert_equal true, status[:geocoded]
+      assert_equal 'Veredicto', status[:category]
     end
 
     should "generate CSV with all the people"

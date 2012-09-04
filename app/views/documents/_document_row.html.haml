@@ -1,0 +1,28 @@
+%tr{:"data-id" => document.id}
+  %td{:style => "width: 70px"}
+    =# thumbnail_tag doc
+  %td
+    .title= document.title
+    .tools
+      .btn-group
+        %a.btn{:href => '#', :class => (document.readable? ? nil : "disabled")}
+          %i.icon-edit{:title => "Editar"}
+        %a.btn{:href => '#', :class => (document.geocoded? ? nil : "disabled")}
+          %i.icon-globe{:title => "Mapa"}
+        %a.btn{:href => '#'}
+          %i.icon-download-alt{:title => "Descargar"}
+        %a.btn{:href => '#', :class => (document.exportable? ? nil : "disabled")}
+          %i.icon-list-alt{:title => "Exportar a CSV"}
+  %td
+    = document.category
+  %td
+    = document._id.generation_time.strftime("%d/%m/%y")
+  %td.state
+    - if document.processed?
+      Finalizado
+      .hidden{:style => "display: none;"}
+        .progress.progress-striped.active
+          .bar{:style => "width: 100%;"}
+    - else
+      .progress.progress-striped.active
+        .bar{:style => "width: #{document.state_to_percentage}%;"}

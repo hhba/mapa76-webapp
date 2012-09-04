@@ -11,7 +11,7 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_response :success
       assert_template :index
       assert_not_nil assigns(:documents)
-      assert_select 'li.title', @document.title
+      assert_select 'td div.title', @document.title
     end
 
     should "Show one document" do
@@ -26,7 +26,17 @@ class DocumentsControllerTest < ActionController::TestCase
       get :new
       assert_response :success
       assert_template :new
-      assert_select 'h1', "New document"
+      assert_select 'h1', "Importar documento"
+    end
+
+    should "Retrieve a JSON with the statuses" do
+      @document.update_attribute :percentage, 100
+      get :status, :format => :json
+      status = JSON.parse(@response.body).first
+
+      assert_response :success
+      assert_equal @document.title, status['title']
+      assert_equal 100, status['percentage']
     end
   end
 end

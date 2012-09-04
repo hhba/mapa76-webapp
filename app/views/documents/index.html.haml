@@ -19,35 +19,8 @@
             %th
               %a{:href => '#', "data-sort" => "status"}Estado
         %tbody
-          - @documents.each do |doc|
-            %tr{:"data-id" => doc.id}
-              %td{:style => "width: 70px"}
-                =# thumbnail_tag doc
-              %td
-                .title= doc.heading
-                .tools
-                  .btn-group
-                    %a.btn{:href => '#', :class => (doc.readable? ? nil : "disabled")}
-                      %i.icon-edit{:title => "Editar"}
-                    %a.btn{:href => '#', :class => (doc.has_geocoded_addresses? ? nil : "disabled")}
-                      %i.icon-globe{:title => "Mapa"}
-                    %a.btn{:href => '#'}
-                      %i.icon-download-alt{:title => "Descargar"}
-                    %a.btn{:href => '#'}
-                      %i.icon-list-alt{:title => "Exportar a CSV"}
-              %td
-                = doc.category
-              %td
-                = doc._id.generation_time.strftime("%d/%m/%y")
-              %td.state
-                - if doc.processed?
-                  Finalizado
-                  .hidden{:style => "display: none;"}
-                    .progress.progress-striped.active
-                      .bar{:style => "width: 100%;"}
-                - else
-                  .progress.progress-striped.active
-                    .bar{:style => "width: #{doc.state_to_percentage}%;"}
+          - @documents.each do |document|
+            = render "document_row", :document => document
 
   .sidebar.with-scrollbar.span5{:style => "background-color: #fff; border: 0"}
     .with-scrollbar-inner#document
