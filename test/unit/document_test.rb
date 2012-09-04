@@ -20,6 +20,9 @@ class DocumentTest < ActiveSupport::TestCase
       assert_equal @document.title, status[:title]
       assert_equal true, status[:geocoded]
       assert_equal 'Veredicto', status[:category]
+      assert status[:generation_time]
+      assert status[:thumbnail]
+      assert status[:completed]
     end
 
     should "generate CSV with all the people"

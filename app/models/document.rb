@@ -24,8 +24,9 @@ class Document
 
   def status
     {
-      :title => title, :category => category, :percentage => percentage,
-      :readable => readable?, :geocoded => geocoded?, :exportable => exportable?
+      :id => _id, :title => title, :category => category, :percentage => percentage,
+      :readable => readable?, :geocoded => geocoded?, :exportable => exportable?, :completed => completed?,
+      :generation_time => id.generation_time.strftime("%d/%m/%y"), :thumbnail => 'http://placekitten.com/g/70/90'
     }
   end
 
@@ -43,5 +44,9 @@ class Document
 
   def processed?
     true
+  end
+
+  def completed?
+    percentage == 100
   end
 end

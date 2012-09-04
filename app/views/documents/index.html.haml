@@ -1,3 +1,34 @@
+%script{:type => 'text/template', id: 'documentRowTemplate'}
+  {{#documents}}
+  %tr{:"data-id" => '{{id}}'}
+    %td{:style => "width: 70px"}
+      %img{src: '{{{thumbnail}}}'}
+    %td
+      .title= '{{title}}'
+      .tools
+        .btn-group
+          %a.btn{:href => '/documents/{{id}}/comb', :class => "{{^readable}}disabled{{/readable}}"}
+            %i.icon-edit{:title => "Editar"}
+          %a.btn{:href => '/documents/{{id}}/map', :class => "{{^geocoded}}disabled{{/geocoded}}"}
+            %i.icon-globe{:title => "Mapa"}
+          %a.btn{:href => '/documents/{{id}}/download', :class => "{{^readable}}disabled{{/readable}}"}
+            %i.icon-download-alt{:title => "Descargar"}
+          %a.btn{:href => '/documents/{{id}}.csv', :class => "{{^exportable}}disabled{{/exportable}}"}
+            %i.icon-list-alt{:title => "Exportar a CSV"}
+    %td
+      = '{{category}}'
+    %td
+      = '{{{generation_time}}}'
+    %td.state
+      {{#completed}}
+      Finalizado
+      {{/completed}}
+      {{^completed}}
+      .progress.progress-striped.active
+        .bar{:style => "width: {{percentage}}%;"}
+      {{/completed}}
+  {{/documents}}
+
 .row-fluid
   .content.span7
     .row-fluid
