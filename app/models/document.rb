@@ -14,14 +14,26 @@ class Document
   field :last_analysis_at, type: Time
   field :processed_text,   type: String
   field :state,            type: Symbol, default: :waiting
+  field :percentage,       type: Integer, default: 0
 
   has_and_belongs_to_many :people, index: true
+
+  def status
+    {
+      :title => title, :category => category, :percentage => percentage,
+      :readable => readable?, :geocoded => geocoded?, :exportable => exportable?
+    }
+  end
 
   def readable?
     true
   end
 
-  def has_geocoded_addresses?
+  def geocoded?
+    true
+  end
+
+  def exportable?
     true
   end
 
