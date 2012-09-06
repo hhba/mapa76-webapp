@@ -18,6 +18,7 @@ group :development, :test do
   gem 'shoulda-matchers'
 end
 
+gem 'geokit'
 gem 'haml'
 gem "haml-rails"
 gem 'mongoid'
