@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  // Update scrollbar when changing tabs
+  $(".document .nav a").live("click", function() {
+    $(".with-scrollbar").mCustomScrollbar("update");
+  });
   function checkDocumentsStatuses(){
     $.get("/documents/status", null, function(data){
       $('table.documents tbody').html(Mustache.render(template, {documents: data}));
@@ -10,13 +14,11 @@ $(document).ready(function(){
     checkDocumentsStatuses();
   }
   $(".documents tbody tr").live("click", function(e) {
-    $(this).siblings().removeClass("selected");
-    $(this).addClass("selected");
     var url = "/documents/" + $(this).data("id") + "/context.json";
     var template = $("#documentContext").html();
+    $(this).siblings().removeClass("selected");
+    $(this).addClass("selected");
     $("#document").html("").spin();
-    $(".with-scrollbar").mCustomScrollbar("update");
-
     $.getJSON(url, null, function(data) {
       $("#document").html(Mustache.render(template, data));
       $("#document .tablesorter").filter(function() {
@@ -24,8 +26,14 @@ $(document).ready(function(){
       }).tablesorter({
         sortList: [[1,1]]
       });
+      $(".with-scrollbar").mCustomScrollbar("update");
     }).error(function() {
       $("#document").html(Mustache.render($("#documentContextError").html()));
     });
+  });
+  $(".with-scrollbar").mCustomScrollbar({
+    mouseWheel: 5,
+    scrollInertia: 250,
+    advanced: { updateOnBrowserResize: true }
   });
 });
