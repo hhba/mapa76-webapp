@@ -47,6 +47,12 @@ class Person
     self.named_entities.select { |ne| ne.document_id == doc.id }.count
   end
 
+  def blacklist
+    # TODO: here we will store who mark this person as blacklisted
+    self.delete
+    Blacklist.find_or_create_by text: self.full_name
+  end
+
 private
 
   def store_normalize_name

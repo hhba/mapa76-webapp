@@ -36,4 +36,17 @@ class PersonTest < ActiveSupport::TestCase
     should "Test where a person has been mentioned"
     should "Test that I am storing normalized names"
   end
+
+  context 'Blacklist' do
+    setup do
+      @person = create :person, name: "Policia Federal"
+      @person.blacklist
+    end
+
+    should "not find the user once it was marked as blacklist" do
+      assert_raise Mongoid::Errors::DocumentNotFound do
+        Person.find(@person.id)
+      end
+    end
+  end
 end

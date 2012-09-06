@@ -36,4 +36,16 @@ $(document).ready(function(){
     scrollInertia: 250,
     advanced: { updateOnBrowserResize: true }
   });
+  // Blacklist
+  $(".blacklist a").live("click", function(event){
+    event.preventDefault();
+    var $this = $(this);
+    var answer = confirm("Enviar " + $this.data("name") + "a la blacklist?");
+    if(answer) {
+      $.post($this.attr("href"), null, function(){
+        $this.parents("tr").remove();
+        $(".with-scrollbar").mCustomScrollbar("update");
+      }, null);
+    }
+  });
 });

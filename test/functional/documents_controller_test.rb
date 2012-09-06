@@ -55,5 +55,11 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_equal @document.title, status["title"]
       assert_instance_of Array, status["registers"]
     end
+
+    should "Show comb page" do
+      get :comb, :id => @document.id
+
+      assert_response :success
+    end
   end
 end
