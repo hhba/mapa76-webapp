@@ -3,7 +3,15 @@ require 'test_helper'
 class DocumentsControllerTest < ActionController::TestCase
   context "Documents list and show" do
     setup do
+      name_entity = create :name_entity
+      name_entity_1 = create :name_entity
+      date_entity = create :date_entity
+      where_entity = create :where_entity
       @document = create :document
+      @register = create :register, document: @document,
+                         who: [name_entity.id], what: "nacio",
+                         when: [date_entity.id], where: [where_entity.id],
+                         to_who: [name_entity_1.id]
     end
 
     should "Should list document's name" do
@@ -32,11 +40,20 @@ class DocumentsControllerTest < ActionController::TestCase
     should "Retrieve a JSON with the statuses" do
       @document.update_attribute :percentage, 100
       get :status, :format => :json
-      status = JSON.parse(@response.body).first
+      status = JSON.parse(@response.body).last
 
       assert_response :success
       assert_equal @document.title, status['title']
       assert_equal 100, status['percentage']
+    end
+
+    should "Retrieve a JSON with the context" do
+      get :context, :format => :json, :id => @document.id
+      status = JSON.parse(@response.body)
+
+      assert_response :success
+      assert_equal @document.title, status["title"]
+      assert_instance_of Array, status["registers"]
     end
   end
 end

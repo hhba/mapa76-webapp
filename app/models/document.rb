@@ -16,6 +16,7 @@ class Document
   field :state,            type: Symbol, default: :waiting
   field :percentage,       type: Integer, default: 0
 
+  has_many :registers
   has_and_belongs_to_many :people, index: true
 
   def self.status
@@ -27,6 +28,14 @@ class Document
       :id => _id, :title => title, :category => category, :percentage => percentage,
       :readable => readable?, :geocoded => geocoded?, :exportable => exportable?, :completed => completed?,
       :generation_time => id.generation_time.strftime("%d/%m/%y"), :thumbnail => 'http://placekitten.com/g/70/90'
+    }
+  end
+
+  def context
+    {
+      :id => id,
+      :title => title,
+      :registers => self.registers.map { |register| register.to_hash }
     }
   end
 

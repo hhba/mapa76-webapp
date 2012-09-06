@@ -1,3 +1,11 @@
+%script#documentContextError{:type => "text/template"}
+  .alert.alert-error
+    Ocurrió un error al obtener información de contexto del documento.
+
+%script#documentContext{:type => "text/template"}
+  %h4 {{ heading }}
+  = render 'context_tabs'
+
 %script{:type => 'text/template', id: 'documentRowTemplate'}
   {{#documents}}
   %tr{:"data-id" => '{{id}}'}

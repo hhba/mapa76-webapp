@@ -25,6 +25,13 @@ class DocumentTest < ActiveSupport::TestCase
       assert status[:completed]
     end
 
+    should "Generate context" do
+      register = create :register, document: @document
+
+      assert_equal register.who, @document.context[:registers].first[:who]
+      assert_equal @document.title, @document.context[:title]
+    end
+
     should "generate CSV with all the people"
     should "Export registers as CSV"
   end

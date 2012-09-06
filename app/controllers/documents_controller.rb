@@ -14,4 +14,9 @@ class DocumentsController < ApplicationController
   def status
     render :json => Document.status
   end
+
+  def context
+    document = Document.find(params[:id])
+    render :json => document.context
+  end
 end
