@@ -27,9 +27,12 @@ class DocumentTest < ActiveSupport::TestCase
 
     should "Generate context" do
       register = create :register, document: @document
+      person = create :person
+      @document.people << person
 
       assert_equal register.who, @document.context[:registers].first[:who]
       assert_equal @document.title, @document.context[:title]
+      assert_equal person.name, @document.context[:people].first[:name]
     end
 
     should "generate CSV with all the people"

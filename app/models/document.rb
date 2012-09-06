@@ -1,6 +1,7 @@
 class Document
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Finder
 
   field :title,            type: String
   field :heading,          type: String
@@ -17,6 +18,7 @@ class Document
   field :percentage,       type: Integer, default: 0
 
   has_many :registers
+  has_many :named_entities
   has_and_belongs_to_many :people, index: true
 
   def self.status
@@ -35,7 +37,11 @@ class Document
     {
       :id => id,
       :title => title,
-      :registers => self.registers.map { |register| register.to_hash }
+      :registers => self.registers.map { |register| register.to_hash },
+      :people => self.people.map { |person| { id: person.id, name: person.full_name, mentions: person.mentions_in(self) } },
+      :dates => self.dates_found.group_by(&:text).map { |k, v| { text: k, mentions: v.size} },
+      :organizations => self.organizations_found.group_by(&:text).map { |k, v| { text: k, mentions: v.size} },
+      :places => (self.places_found + self.addresses_found).group_by(&:text).map { |k, v| { text: k, mentions: v.size} }
     }
   end
 
