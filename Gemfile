@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 
 group :assets do
+  gem 'backbone-on-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
@@ -21,8 +22,8 @@ end
 gem 'geokit'
 gem 'haml'
 gem "haml-rails"
-gem 'mongoid'
 gem 'jquery-rails'
+gem 'mongoid'
 gem 'mongoid'
 gem 'simple_form'
 gem 'unicorn'
