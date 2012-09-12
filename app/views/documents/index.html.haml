@@ -1,3 +1,5 @@
+- content_for :javascripts do
+  = javascript_include_tag "documents.js"
 %script#documentContextError{:type => "text/template"}
   .alert.alert-error
     Ocurrió un error al obtener información de contexto del documento.
@@ -6,7 +8,7 @@
   %h4 {{ heading }}
   = render 'context_tabs'
 
-%script{:type => 'text/template', id: 'documentRowTemplate'}
+%script#documentRowTemplate{:type => 'text/template'}
   {{#documents}}
   %tr{:"data-id" => '{{id}}'}
     %td{:style => "width: 70px"}
