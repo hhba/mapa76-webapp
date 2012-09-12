@@ -49,4 +49,8 @@ class PersonTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context "Person info" do
+    should "test metainfo"
+  end
 end
