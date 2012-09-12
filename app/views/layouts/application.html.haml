@@ -16,7 +16,6 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="/images/favicon.ico" rel="shortcut icon")
 
-
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -31,10 +30,19 @@
               %li= link_to "Documentos", documents_path
 
     .container-fluid
-
       .row-fluid
-        .span12
+        .content.span8
+          - if content_for?(:hero)
+            .hero-unit
+              = yield :hero
+          - if content_for?(:row)
+            .row-fluid
+              = yield :row
           = yield
+        - if content_for?(:sidebar)
+          .sidebar.span4
+            .sidebar-nav
+              = yield :sidebar
     
       %footer
         %p &copy; Company 2012
@@ -43,3 +51,4 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    = yield :javascripts

@@ -19,4 +19,12 @@ class DocumentsController < ApplicationController
     document = Document.find(params[:id])
     render :json => document.context
   end
+
+  def comb
+    @document = Document.find(params[:id])
+    @pages = @document.pages.asc(:_id).first
+    @empty_pages = @document.pages.asc(:_id).only(:id, :num, :width, :height)
+    @addresses = @document.addresses_found.select { |addr| addr.geocoded? }
+    @center = @addresses.first
+  end
 end
