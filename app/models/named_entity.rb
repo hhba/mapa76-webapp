@@ -1,5 +1,6 @@
 class NamedEntity
   include Mongoid::Document
+  include TimeSetter
 
   field :text,      :type => String, :default => lambda { human_form }
   field :pos,       :type => Integer
@@ -16,6 +17,24 @@ class NamedEntity
   belongs_to :document, index: true
   belongs_to :person, index: true
   belongs_to :blacklist, index: true
+
+  def context(length=70)
+    text = self.document.processed_text
+
+    # Calculate "start" and "end"
+    context_start = self.pos - length
+    context_end = self.pos + self.text.size + length
+
+    # Clamp values to document size
+    context_start = 0 if context_start < 0
+    context_end = text.size if context_end > text.size
+
+    text[context_start .. context_end]
+  end
+
+  def page_num
+    Page.where(:_id => self.inner_pos["from"]["pid"]).only(:num).first.try(:num)
+  end
 
 private
 
