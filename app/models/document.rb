@@ -11,12 +11,13 @@ class Document
   field :original_file,    type: String
   field :thumbnail_file,   type: String
   field :information,      type: Hash
-  field :fontspecs,        type: Hash
+  field :fontspecs,        type: Hash, default: {}
   field :last_analysis_at, type: Time
   field :processed_text,   type: String
   field :state,            type: Symbol, default: :waiting
   field :percentage,       type: Integer, default: 0
 
+  has_many :pages
   has_many :registers
   has_many :named_entities
   has_and_belongs_to_many :people, index: true
