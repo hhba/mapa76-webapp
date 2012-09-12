@@ -7,7 +7,13 @@ Mapa76::Application.routes.draw do
     get 'status', :on => :collection
     member do
       get 'context'
+      get 'comb'
     end
+  end
+
+  namespace :api do
+    resources :documents
+    resources :people
   end
 
   root :to => "welcome#index"
