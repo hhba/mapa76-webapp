@@ -14,6 +14,7 @@ Mapa76::Application.routes.draw do
   namespace :api do
     resources :documents
     resources :people
+    resources :registers
   end
 
   root :to => "welcome#index"
