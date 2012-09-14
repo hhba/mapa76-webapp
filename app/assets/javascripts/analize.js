@@ -96,8 +96,8 @@ $(document).ready(function() {
     event.preventDefault();
     $(".timeline-container").toggle("30");
   });
-  //currentTimeline = TimelineSetter.Timeline.boot(
-  //  $("#timeline").data("dates"),
-  //  {"interval":"","container":"#timeline"}
-  //);
+  currentTimeline = TimelineSetter.Timeline.boot(
+    $("#timeline").data("dates"),
+    {"interval":"","container":"#timeline"}
+  );
 });
