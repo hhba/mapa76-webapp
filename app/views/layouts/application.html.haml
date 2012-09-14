@@ -43,7 +43,11 @@
           .sidebar.span4
             .sidebar-nav
               = yield :sidebar
-    
+
+    - if content_for?(:free)
+      .container-fluid
+        = yield :free
+
       %footer
         %p &copy; Company 2012
     /
