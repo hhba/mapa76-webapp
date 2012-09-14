@@ -13,4 +13,5 @@ capybara-*.html
 /spec/tmp/*
 **.orig
 rerun.txt
+.rvmrc
 pickle-email-*.html
