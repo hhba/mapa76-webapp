@@ -12,6 +12,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'debugger'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'guard-test'
@@ -25,8 +26,5 @@ gem 'haml'
 gem "haml-rails"
 gem 'jquery-rails'
 gem 'mongoid'
-gem 'mongoid'
 gem 'simple_form'
 gem 'unicorn'
-
-# gem 'debugger'
