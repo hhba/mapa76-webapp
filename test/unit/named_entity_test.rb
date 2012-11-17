@@ -29,7 +29,7 @@ class NamedEntityTest < ActiveSupport::TestCase
     end
 
     should "Retrieve timestamp" do
-      assert_instance_of Bignum, @date_entity_1.timestamp
+      assert_instance_of Fixnum, @date_entity_1.timestamp
     end
 
     should "tell you when it does not have a parseable date" do
