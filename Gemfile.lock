@@ -35,6 +35,7 @@ GEM
       jquery-rails
       railties (>= 3.1)
     builder (3.0.0)
+    chunky_png (1.2.6)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -42,7 +43,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
-    commonjs (0.2.6)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
     database_cleaner (0.8.0)
     eco (1.0.0)
       coffee-script
@@ -59,6 +65,7 @@ GEM
       factory_girl (~> 4.0.0)
       railties (>= 3.0.0)
     ffi (1.1.5)
+    fssm (0.2.9)
     geokit (1.6.5)
       multi_json
     guard (1.3.2)
@@ -84,12 +91,6 @@ GEM
       railties (>= 3.1.0)
     json (1.7.5)
     kgio (2.7.4)
-    less (2.2.1)
-      commonjs (~> 0.2.6)
-    less-rails (2.2.3)
-      actionpack (>= 3.1)
-      less (~> 2.2.0)
-    libv8 (3.3.10.4)
     listen (0.4.7)
       rb-fchange (~> 0.0.5)
       rb-fsevent (~> 0.9.1)
@@ -99,6 +100,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    modular-scale (1.0.2)
+      compass (>= 0.11.5)
+      sassy-math (>= 1.2)
     mongoid (3.0.5)
       activemodel (~> 3.1)
       moped (~> 1.1)
@@ -145,6 +149,8 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    sassy-math (1.2)
+      compass (~> 0.11)
     shoulda-context (1.0.0)
     shoulda-matchers (1.3.0)
       activesupport (>= 3.0.0)
@@ -156,18 +162,11 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     test-unit (2.5.2)
-    therubyracer (0.10.2)
-      libv8 (~> 3.3.10)
     thor (0.16.0)
     tilt (1.3.3)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.1.3)
-      actionpack (>= 3.1)
-      less-rails (~> 2.2.3)
-      railties (>= 3.1)
-      therubyracer (~> 0.10.2)
     tzinfo (0.3.33)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -176,6 +175,11 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    zurb-foundation (3.0.9)
+      compass (>= 0.12.2)
+      modular-scale (>= 1.0.2)
+      rake
+      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
@@ -183,6 +187,7 @@ PLATFORMS
 DEPENDENCIES
   backbone-on-rails
   coffee-rails (~> 3.2.1)
+  compass-rails (~> 1.0.3)
   database_cleaner
   factory_girl_rails
   geokit
@@ -194,10 +199,11 @@ DEPENDENCIES
   mongoid
   rails (= 3.2.8)
   ruby-prof
-  sass-rails (~> 3.2.3)
+  sass
+  sass-rails
   shoulda-context
   shoulda-matchers
   simple_form
-  twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   unicorn
+  zurb-foundation (~> 3.0.9)
