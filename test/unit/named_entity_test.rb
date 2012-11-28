@@ -46,17 +46,19 @@ class NamedEntityTest < ActiveSupport::TestCase
         "14 de julio de 2011"
       end
 
-      time_setter_hash = {
+      expected_time_setter_hash = {
         :date => "14/7/2011",
         :display_date => "14/7/2011",
         :description => "14 de julio de 2011",
         :link => "/documents/#{@date_entity_1.document.id}/comb#1",
         :series => "",
         :html => "",
-        :timestamp => 1310612400
       }
+      time_setter_hash = @date_entity_1.to_time_setter
+      timestamp = time_setter_hash.delete(:timestamp)
       
-      assert_equal time_setter_hash, @date_entity_1.to_time_setter
+      assert_equal expected_time_setter_hash, time_setter_hash
+      assert_instance_of Fixnum, timestamp
     end
   end
 end
