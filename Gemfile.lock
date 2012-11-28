@@ -34,6 +34,10 @@ GEM
       ejs (~> 1.0.0)
       jquery-rails
       railties (>= 3.1)
+    bootstrap-sass (2.2.1.1)
+      sass (~> 3.2)
+    bootswatch-rails (0.1.0)
+      railties (>= 3.1)
     builder (3.0.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -43,7 +47,6 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     columnize (0.3.6)
-    commonjs (0.2.6)
     database_cleaner (0.8.0)
     debugger (1.2.1)
       columnize (>= 0.3.1)
@@ -73,7 +76,7 @@ GEM
     guard-test (0.5.0)
       guard (>= 1.1.0)
       test-unit (~> 2.2)
-    haml (3.1.6)
+    haml (3.1.7)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
       activesupport (~> 3.0)
@@ -90,11 +93,6 @@ GEM
       railties (>= 3.1.0)
     json (1.7.5)
     kgio (2.7.4)
-    less (2.2.1)
-      commonjs (~> 0.2.6)
-    less-rails (2.2.3)
-      actionpack (>= 3.1)
-      less (~> 2.2.0)
     libv8 (3.3.10.4)
     listen (0.4.7)
       rb-fchange (~> 0.0.5)
@@ -169,11 +167,6 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.1.3)
-      actionpack (>= 3.1)
-      less-rails (~> 2.2.3)
-      railties (>= 3.1)
-      therubyracer (~> 0.10.2)
     tzinfo (0.3.33)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -188,6 +181,8 @@ PLATFORMS
 
 DEPENDENCIES
   backbone-on-rails
+  bootstrap-sass
+  bootswatch-rails
   coffee-rails (~> 3.2.1)
   database_cleaner
   debugger
@@ -200,10 +195,11 @@ DEPENDENCIES
   mongoid
   rails (= 3.2.8)
   ruby-prof
+  sass
   sass-rails (~> 3.2.3)
   shoulda-context
   shoulda-matchers
   simple_form
-  twitter-bootstrap-rails
+  therubyracer
   uglifier (>= 1.0.3)
   unicorn
