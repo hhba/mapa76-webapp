@@ -12,13 +12,16 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'debugger'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'guard-test'
   gem 'ruby-prof'
   gem 'shoulda-context'
   gem 'shoulda-matchers'
+end
+
+group :development do
+  gem 'debugger'
 end
 
 gem 'haml'
