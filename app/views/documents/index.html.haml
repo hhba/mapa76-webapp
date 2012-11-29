@@ -51,7 +51,8 @@
   {{#documents}}
   %tr{:"data-id" => '{{id}}'}
     %td{:style => "width: 70px"}
-      %img{src: '{{{thumbnail}}}'}
+      .thumbnail
+        %img{src: '{{{thumbnail}}}'}
     %td
       .title= '{{title}}'
       .tools
