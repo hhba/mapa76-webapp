@@ -1,5 +1,44 @@
 - content_for :javascripts do
   = javascript_include_tag "documents.js"
+
+%header
+  .subnav.subnav-fixed
+    %ul.nav.nav-pills
+      %li{:class => current_page?(documents_path) ? "active" : nil}
+        %a{:href => documents_path}= t "documents.documents"
+      %li{:class => current_page?(new_document_path) ? "active" : nil}
+        %a{:href => new_document_path}= t "documents.new"
+
+- content_for :free do
+  .row-fluid
+    .content.span7
+      .row-fluid
+        .alert.fade.in.alert-success#stillProcessing{:style => 'display: none;'}
+          %a.close{:href => '#', 'data-dismiss' => 'alert'}×
+          %strong
+            Recuerde que el procesamiento de tareas puede tomar algunos minutos.
+      .row-fluid
+        %table{:class => 'table documents', :id => 'sorteable'}
+          %thead
+            %tr
+              %th{:style => "width: 70px"}
+              %th
+                %a{:href => '#', "data-sort" => "name"}Título
+              %th
+                %a{:href => '#', "data-sort" => "name"}Tipo
+              %th
+                %a{:href => '#', "data-sort" => "date"}Fecha
+              %th
+                %a{:href => '#', "data-sort" => "status"}Estado
+          %tbody
+            - @documents.each do |document|
+              = render "document_row", :document => document
+
+    .sidebar.with-scrollbar.span5{:style => "background-color: #fff; border: 0"}
+      .with-scrollbar-inner#document
+        %h4
+          Haga clic en un documento para ver más información
+
 %script#documentContextError{:type => "text/template"}
   .alert.alert-error
     Ocurrió un error al obtener información de contexto del documento.
@@ -38,32 +77,3 @@
         .bar{:style => "width: {{percentage}}%;"}
       {{/completed}}
   {{/documents}}
-
-.row-fluid
-  .content.span7
-    .row-fluid
-      .alert.fade.in.alert-success#stillProcessing{:style => 'display:none;'}
-        %a.close{:href => '#', 'data-dismiss' => 'alert'}×
-        %strong
-          Recuerde que el procesamiento de tareas puede tomar algunos minutos.
-    .row-fluid
-      %table{:class => 'table documents', :id => 'sorteable'}
-        %thead
-          %tr
-            %th{:style => "width: 70px"}
-            %th
-              %a{:href => '#', "data-sort" => "name"}Título
-            %th
-              %a{:href => '#', "data-sort" => "name"}Tipo
-            %th
-              %a{:href => '#', "data-sort" => "date"}Fecha
-            %th
-              %a{:href => '#', "data-sort" => "status"}Estado
-        %tbody
-          - @documents.each do |document|
-            = render "document_row", :document => document
-
-  .sidebar.with-scrollbar.span5{:style => "background-color: #fff; border: 0"}
-    .with-scrollbar-inner#document
-      %h4
-        Haga clic en un documento para ver más información
