@@ -27,5 +27,7 @@ body { padding-top: 60px; }
 // And finally bootswatch style itself
 @import "bootswatch/cerulean/bootswatch";
 
+@import "bootswatch/docs";
+
 // Whatever application styles you have go last
 @import "base";
