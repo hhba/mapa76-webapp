@@ -30,7 +30,7 @@ class Document
     {
       :id => _id, :title => title, :category => category, :percentage => percentage,
       :readable => readable?, :geocoded => geocoded?, :exportable => exportable?, :completed => completed?,
-      :generation_time => id.generation_time.strftime("%d/%m/%y"), :thumbnail => 'http://placekitten.com/g/70/90'
+      :generation_time => id.generation_time.strftime("%d/%m/%y"), :thumbnail => thumbnail_url(self)
     }
   end
 

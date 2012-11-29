@@ -1,6 +1,6 @@
 %tr{:"data-id" => document.id}
   %td{:style => "width: 70px"}
-    %img{src: 'http://placekitten.com/g/70/90'}
+    = thumbnail_tag(document)
   %td
     .title= document.title
     .tools

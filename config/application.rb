@@ -64,5 +64,9 @@ module Mapa76
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Thumbnails and upload paths
+    config.thumbnails_path = "/thumbs"
+    config.uploads_path    = "/uploads"
   end
 end
