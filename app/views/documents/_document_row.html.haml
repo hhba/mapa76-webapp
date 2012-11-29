@@ -3,7 +3,7 @@
     .thumbnail
       %img{:src => thumbnail_url(document)}
   %td
-    .title= document.title
+    .title= document.heading
     .tools
       .btn-group
         %a.btn.btn-small{:href => '#', :class => (document.readable? ? nil : "disabled")}
