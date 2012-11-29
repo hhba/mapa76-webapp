@@ -22,18 +22,6 @@ class Document
   has_many :named_entities
   has_and_belongs_to_many :people, index: true
 
-  def self.status
-    all.map { |document| document.status }
-  end
-
-  def status
-    {
-      :id => _id, :title => title, :category => category, :percentage => percentage,
-      :readable => readable?, :geocoded => geocoded?, :exportable => exportable?, :completed => completed?,
-      :generation_time => id.generation_time.strftime("%d/%m/%y"), :thumbnail => thumbnail_url(self)
-    }
-  end
-
   def context
     {
       :id => id,

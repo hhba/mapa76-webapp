@@ -12,19 +12,6 @@ class DocumentTest < ActiveSupport::TestCase
       validate_uniqueness_of(:title)
     end
 
-    should "Return a hash with the status on each document" do
-      assert_instance_of Array, Document.status
-      status = Document.status.first
-
-      assert_equal 100, status[:percentage]
-      assert_equal @document.title, status[:title]
-      assert_equal true, status[:geocoded]
-      assert_equal 'Veredicto', status[:category]
-      assert status[:generation_time]
-      assert status[:thumbnail]
-      assert status[:completed]
-    end
-
     should "Generate context" do
       register = create :register, document: @document
       person = create :person

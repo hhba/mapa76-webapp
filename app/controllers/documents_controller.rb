@@ -12,7 +12,7 @@ class DocumentsController < ApplicationController
   end
 
   def status
-    render :json => Document.status
+    render :json => Document.all.map { |d| view_context.status(d) }
   end
 
   def context
