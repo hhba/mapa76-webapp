@@ -29,7 +29,8 @@ class NamedEntityTest < ActiveSupport::TestCase
     end
 
     should "Retrieve timestamp" do
-      assert_instance_of Fixnum, @date_entity_1.timestamp
+      assert @date_entity_1.timestamp.respond_to?(:integer?)
+      assert @date_entity_1.timestamp.integer?
     end
 
     should "tell you when it does not have a parseable date" do
@@ -58,7 +59,8 @@ class NamedEntityTest < ActiveSupport::TestCase
       timestamp = time_setter_hash.delete(:timestamp)
       
       assert_equal expected_time_setter_hash, time_setter_hash
-      assert_instance_of Fixnum, timestamp
+      assert timestamp.respond_to?(:integer?)
+      assert timestamp.integer?
     end
   end
 end
