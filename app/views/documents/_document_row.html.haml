@@ -6,13 +6,13 @@
     .title= document.title
     .tools
       .btn-group
-        %a.btn{:href => '#', :class => (document.readable? ? nil : "disabled")}
+        %a.btn.btn-small{:href => '#', :class => (document.readable? ? nil : "disabled")}
           %i.icon-edit{:title => "Editar"}
-        %a.btn{:href => '#', :class => (document.geocoded? ? nil : "disabled")}
+        %a.btn.btn-small{:href => '#', :class => (document.geocoded? ? nil : "disabled")}
           %i.icon-globe{:title => "Mapa"}
-        %a.btn{:href => '#'}
+        %a.btn.btn-small{:href => '#'}
           %i.icon-download-alt{:title => "Descargar"}
-        %a.btn{:href => '#', :class => (document.exportable? ? nil : "disabled")}
+        %a.btn.btn-small{:href => '#', :class => (document.exportable? ? nil : "disabled")}
           %i.icon-list-alt{:title => "Exportar a CSV"}
   %td
     = document.category

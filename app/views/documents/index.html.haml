@@ -57,13 +57,13 @@
       .title= '{{title}}'
       .tools
         .btn-group
-          %a.btn{:href => '/documents/{{id}}/comb', :class => "{{^readable}}disabled{{/readable}}"}
+          %a.btn.btn-small{:href => '/documents/{{id}}/comb', :class => "{{^readable}}disabled{{/readable}}"}
             %i.icon-edit{:title => "Editar"}
-          %a.btn{:href => '/documents/{{id}}/map', :class => "{{^geocoded}}disabled{{/geocoded}}"}
+          %a.btn.btn-small{:href => '/documents/{{id}}/map', :class => "{{^geocoded}}disabled{{/geocoded}}"}
             %i.icon-globe{:title => "Mapa"}
-          %a.btn{:href => '/documents/{{id}}/download', :class => "{{^readable}}disabled{{/readable}}"}
+          %a.btn.btn-small{:href => '/documents/{{id}}/download', :class => "{{^readable}}disabled{{/readable}}"}
             %i.icon-download-alt{:title => "Descargar"}
-          %a.btn{:href => '/documents/{{id}}.csv', :class => "{{^exportable}}disabled{{/exportable}}"}
+          %a.btn.btn-small{:href => '/documents/{{id}}.csv', :class => "{{^exportable}}disabled{{/exportable}}"}
             %i.icon-list-alt{:title => "Exportar a CSV"}
     %td
       = '{{category}}'
