@@ -58,8 +58,7 @@ class Person
     {"_id" => _id, "created_at" => created_at, :documents => docs, :full_name => full_name, :tags => tags}
   end
 
-private
-
+protected
   def store_normalize_name
     self.searchable_name = self.class.normalize_name(name)
   end

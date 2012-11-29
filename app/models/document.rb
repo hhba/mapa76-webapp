@@ -18,15 +18,19 @@ class Document
   field :percentage,       type: Integer, default: 0
 
   has_many :pages
-  has_many :registers
+  has_many :fact_registers
   has_many :named_entities
   has_and_belongs_to_many :people, index: true
+
+  validates_presence_of :original_file
+
+  after_create :enqueue_process
 
   def context
     {
       :id => id,
       :title => title,
-      :registers => self.registers.map { |register| register.to_hash },
+      :registers => self.fact_registers.map(&:to_hash),
       :people => self.people.map { |person| { id: person.id, name: person.full_name, mentions: person.mentions_in(self) } },
       :dates => self.dates_found.group_by(&:text).map { |k, v| { text: k, mentions: v.size} },
       :organizations => self.organizations_found.group_by(&:text).map { |k, v| { text: k, mentions: v.size} },
@@ -52,5 +56,12 @@ class Document
 
   def completed?
     percentage == 100
+  end
+
+protected
+  def enqueue_process
+    # TODO Create empty class NormalizationTask
+    #Resque.enqueue(NormalizationTask, id)
+    return true
   end
 end

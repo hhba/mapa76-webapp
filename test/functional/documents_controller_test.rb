@@ -7,11 +7,16 @@ class DocumentsControllerTest < ActionController::TestCase
       name_entity_1 = create :name_entity
       date_entity = create :date_entity
       where_entity = create :where_entity
+      action_entity = create :action_entity, document: @document
       @document = create :document
-      @register = create :register, document: @document,
-                         who: [name_entity.id], what: "nacio",
-                         when: [date_entity.id], where: [where_entity.id],
-                         to_who: [name_entity_1.id]
+      @register = create :fact_register, {
+        document: @document,
+        person_ids: [name_entity.id],
+        action_ids: [action_entity.id],
+        complement_person_ids: [name_entity_1.id],
+        date_id: date_entity.id,
+        place_id: where_entity.id
+      }
     end
 
     should "Should list document's name" do
