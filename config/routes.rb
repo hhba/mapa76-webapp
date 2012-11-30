@@ -1,4 +1,6 @@
 Mapa76::Application.routes.draw do
+  devise_for :users
+
   resources :people do
     post "blacklist", :on => :member
   end
