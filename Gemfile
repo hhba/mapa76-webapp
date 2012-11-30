@@ -26,6 +26,7 @@ group :development do
   gem 'debugger'
 end
 
+gem 'devise'
 gem 'haml'
 gem 'sass'
 gem "haml-rails"

@@ -1,7 +1,11 @@
 Mapa76::Application.routes.draw do
+  devise_for :users
+
   resources :people do
     post "blacklist", :on => :member
   end
+
+  resources :projects, :only => [:index, :show]
 
   resources :documents do
     get 'status', :on => :collection
