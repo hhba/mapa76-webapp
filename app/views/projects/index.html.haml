@@ -1,2 +1,6 @@
-%h1 Projects#index
-%p Find me in app/views/projects/index.html.haml
+%h1 Proyectos
+%ul
+  - @projects.each do |project|
+    %li
+      = project.name
+= link_to "New project", new_project_path

@@ -5,7 +5,7 @@ Mapa76::Application.routes.draw do
     post "blacklist", :on => :member
   end
 
-  resources :projects, :only => [:index, :show]
+  resources :projects, :except => [:edit, :update, :delete]
 
   resources :documents do
     get 'status', :on => :collection

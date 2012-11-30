@@ -29,7 +29,6 @@
           .container.nav-collapse
             %ul.nav
               %li= link_to "Proyectos", projects_path
-              %li= link_to "Documentos", documents_path
             %ul.nav.pull-right
               - if user_signed_in?
                 %li
@@ -41,6 +40,17 @@
                   = link_to "Sign in", new_user_session_path
                 %li
                   = link_to "Sign up", new_user_registration_path
+      %ul.breadcrumb
+        %li
+          = link_to "Inicio", root_path
+          %span.divider /
+        - if current_project
+          %li
+            = link_to current_project.name, project_path(current_project)
+            %span.divider /
+        - if current_document
+          %li.active
+            = current_document.name
     .container-fluid
       .row-fluid
         .content.span8
