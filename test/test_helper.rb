@@ -5,7 +5,7 @@ require 'database_cleaner'
 
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
-  include Devise::TestHelpers
+
   # Add more helper methods to be used by all tests here...
   def setup
     DatabaseCleaner.strategy = :truncation
@@ -13,4 +13,8 @@ class ActiveSupport::TestCase
     raise NoMethodError
   rescue NoMethodError
   end
+end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
 end
