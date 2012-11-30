@@ -28,6 +28,7 @@
           %a.brand(href="/") Mapa76
           .container.nav-collapse
             %ul.nav
+              %li= link_to "Proyectos", projects_path
               %li= link_to "Documentos", documents_path
             %ul.nav.pull-right
               - if user_signed_in?
