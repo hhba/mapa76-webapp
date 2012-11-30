@@ -3,6 +3,7 @@ require 'test_helper'
 class DocumentsControllerTest < ActionController::TestCase
   context "Documents list and show" do
     setup do
+      @user = create :user
       name_entity = create :name_entity
       name_entity_1 = create :name_entity
       date_entity = create :date_entity
@@ -17,6 +18,7 @@ class DocumentsControllerTest < ActionController::TestCase
         date_id: date_entity.id,
         place_id: where_entity.id
       }
+      sign_in @user
     end
 
     should "Should list document's name" do
