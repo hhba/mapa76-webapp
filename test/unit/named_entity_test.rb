@@ -1,11 +1,6 @@
 require 'test_helper'
 
 class NamedEntityTest < ActiveSupport::TestCase
-  context "Context methods" do
-    should "test context method"
-    should "test page_num method"
-  end
-
   context "Parse date" do
     setup do
       @date_entity_1 = create :date_entity
