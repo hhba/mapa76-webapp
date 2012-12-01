@@ -10,8 +10,6 @@ class ActiveSupport::TestCase
   def setup
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
-    raise NoMethodError
-  rescue NoMethodError
   end
 end
 
