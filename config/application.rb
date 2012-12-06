@@ -70,8 +70,6 @@ module Mapa76
     config.uploads_path    = "/uploads"
 
     config.after_initialize do
-      puts "After initialize..."
-
       # Force load of models because after requiring Mapa76::Core models,
       # autoload marks all of the models extensions in app/models as *already*
       # loaded (because they are named the same).
