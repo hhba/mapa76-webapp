@@ -68,5 +68,17 @@ module Mapa76
     # Thumbnails and upload paths
     config.thumbnails_path = "/thumbs"
     config.uploads_path    = "/uploads"
+
+    config.after_initialize do
+      puts "After initialize..."
+
+      # Force load of models because after requiring Mapa76::Core models,
+      # autoload marks all of the models extensions in app/models as *already*
+      # loaded (because they are named the same).
+      # TODO Check if there is a better solution...
+      Dir[Rails.root + "app/models/**/*"].each do |model|
+        require model
+      end
+    end
   end
 end

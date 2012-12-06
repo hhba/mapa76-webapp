@@ -7,11 +7,6 @@ class DocumentTest < ActiveSupport::TestCase
       @document.update_attributes :percentage => 100, :category => 'Veredicto'
     end
 
-    should "Validate presence and uniqueness of title" do
-      validate_presence_of(:title)
-      validate_uniqueness_of(:title)
-    end
-
     should "Generate context" do
       name_entity = create :name_entity, document: @document
       date_entity = create :date_entity, document: @document
