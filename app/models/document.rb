@@ -1,5 +1,20 @@
 class Document
+  include Mongoid::Pagination
+
   after_create :enqueue_process
+
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  tire do
+    mapping do
+      indexes :title,   analyzer: "snowball", boost: 100
+      indexes :heading, analyzer: "snowball", boost: 100
+      indexes :pages,   analyzer: "snowball"
+    end
+  end
+
 
   # FIXME this should be a helper
   def context
@@ -12,6 +27,18 @@ class Document
       :organizations => self.organizations_found.group_by(&:text).map { |k, v| { text: k, mentions: v.size} },
       :places => (self.places_found + self.addresses_found).group_by(&:text).map { |k, v| { text: k, mentions: v.size} }
     }
+  end
+
+  def to_indexed_json
+    fields = {
+      title: title,
+      heading: heading,
+      pages: {},
+    }
+    pages.each do |page|
+      fields[:pages][page.num] = page.text.gsub(/<[^<]+?>/, "")
+    end
+    fields.to_json
   end
 
 protected
