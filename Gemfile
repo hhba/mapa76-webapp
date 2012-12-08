@@ -33,5 +33,8 @@ gem 'sass'
 gem "haml-rails"
 gem 'jquery-rails'
 gem 'mongoid'
+gem 'mongoid-pagination'
 gem 'simple_form'
 gem 'unicorn'
+gem 'tire'
+gem 'yajl-ruby', :require => 'yajl/json_gem'

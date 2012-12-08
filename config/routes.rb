@@ -9,6 +9,7 @@ Mapa76::Application.routes.draw do
 
   resources :documents do
     get 'status', :on => :collection
+    get 'search', :on => :collection
     member do
       get 'context'
       get 'comb'
