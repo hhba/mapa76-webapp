@@ -5,6 +5,19 @@ class DocumentsController < ApplicationController
     @documents = Document.all
   end
 
+  def search
+    @search = Document.tire.search do |s|
+      s.fields :id
+      s.query do |q|
+        params[:q].blank? ? q.all : q.string(params[:q])
+      end
+      s.highlight :title, :heading, *(1..10000).map(&:to_s)
+    end
+    @results = @search.results.map do |item|
+      [item, item.load]
+    end
+  end
+
   def new
     @document = Document.new
   end
