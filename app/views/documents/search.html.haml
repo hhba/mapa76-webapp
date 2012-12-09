@@ -1,19 +1,4 @@
 -# encoding: utf-8
-- content_for :styles do
-  :css
-    body {
-     padding-top: 40px;
-     background-color: #eee;
-    }
-    .highlights {
-      font-size: 12px;
-    }
-    .highlights li {
-      line-height: 15px;
-    }
-    .content em {
-      background-color: yellow;
-    }
 
 .row-fluid
   .content
@@ -34,7 +19,7 @@
                 .thumbnail
                   %img{:src => thumbnail_url(document)}
               %td
-                %h4.heading= item.highlight.try(:[], :heading).try(:first) || document.heading
+                %h4.heading= item.highlight.try(:[], :heading).try(:first).try(:html_safe) || document.heading
                 .small
                   = document.category
                   = document._id.generation_time.strftime("%d/%m/%y")
@@ -44,26 +29,27 @@
                         %li
                           %strong= "p.#{page_num}"
                           = "..."
-                          = item.highlight[page_num.to_s].first.gsub("\n", " ")
+                          = item.highlight[page_num.to_s].first.gsub("\n", " ").html_safe
                           = "..."
-                .tools
-                  .btn-group.pull-right
-                    %a.btn.btn-small{:href => '#', :class => (document.readable? ? nil : "disabled")}
-                      %i.icon-edit{:title => "Editar"}
-                    %a.btn.btn-small{:href => '#', :class => (document.geocoded? ? nil : "disabled")}
-                      %i.icon-globe{:title => "Mapa"}
-                    %a.btn.btn-small{:href => '#'}
-                      %i.icon-download-alt{:title => "Descargar"}
-                    %a.btn.btn-small{:href => '#', :class => (document.exportable? ? nil : "disabled")}
-                      %i.icon-list-alt{:title => "Exportar a CSV"}
-                  .state.pull-right
-                    - if document.processed?
-                      .hidden{:style => "display: none;"}
+                -#
+                  .tools
+                    .btn-group.pull-right
+                      %a.btn.btn-small{:href => '#', :class => (document.readable? ? nil : "disabled")}
+                        %i.icon-edit{:title => "Editar"}
+                      %a.btn.btn-small{:href => '#', :class => (document.geocoded? ? nil : "disabled")}
+                        %i.icon-globe{:title => "Mapa"}
+                      %a.btn.btn-small{:href => '#'}
+                        %i.icon-download-alt{:title => "Descargar"}
+                      %a.btn.btn-small{:href => '#', :class => (document.exportable? ? nil : "disabled")}
+                        %i.icon-list-alt{:title => "Exportar a CSV"}
+                    .state.pull-right
+                      - if document.processed?
+                        .hidden{:style => "display: none;"}
+                          .progress.progress-striped.active
+                            .bar{:style => "width: 100%;"}
+                      - else
                         .progress.progress-striped.active
-                          .bar{:style => "width: 100%;"}
-                    - else
-                      .progress.progress-striped.active
-                        .bar{:style => "width: #{document.state_to_percentage}%;"}
+                          .bar{:style => "width: #{document.state_to_percentage}%;"}
 
 - content_for :sidebar do
   %ul.nav.nav-list#sidebar

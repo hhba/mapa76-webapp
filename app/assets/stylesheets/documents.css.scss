@@ -1,0 +1,12 @@
+.documents {
+  .highlights {
+    font-size: 12px;
+    li {
+      line-height: 15px;
+    }
+  }
+  .heading em,
+  .highlights em {
+    background-color: yellow;
+  }
+}
