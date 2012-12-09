@@ -1,7 +1,6 @@
-.row
-  .span4.offset4
-    %h2
-      Sign up
+.row-fluid{style: "margin-top: 3em"}
+  .span4.offset7
+    %h2= t("sessions.sign_up")
 
     = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = f.error_notification
@@ -12,6 +11,6 @@
         = f.input :password_confirmation, :required => true
 
       .form-actions
-        = f.button :submit, "Sign up"
+        = f.button :submit, t("sessions.sign_up")
 
     = render "devise/shared/links"

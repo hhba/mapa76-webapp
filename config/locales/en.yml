@@ -2,4 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  sessions:
+    sign_in: "Iniciar sesión"
+    sign_out: "Cerrar sesión"
+    sign_up: "Registrarse"
+    forgot_your_password: "Forgot your password?"
+    no_confirmation_instructions: "Didn't receive confirmation instructions?"
+    no_unlock_instructions: "Didn't receive unlock instructions?"
+    send_me_reset_instructions: "Send me instructions"

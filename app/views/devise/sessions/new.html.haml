@@ -1,7 +1,6 @@
-.row
-  .span4.offset4
-    %h2
-      Sign in
+.row-fluid{style: "margin-top: 3em"}
+  .span4.offset7
+    %h2= t("sessions.sign_in")
 
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       .form-inputs
@@ -10,6 +9,6 @@
         = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
 
       .form-actions
-        = f.button :submit, "Sign in"
+        = f.button :submit, t("sessions.sign_in")
 
     = render "devise/shared/links"
