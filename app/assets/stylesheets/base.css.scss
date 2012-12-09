@@ -131,11 +131,6 @@ table.tablesorter th {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.breadcrumb{
-  margin-bottom: 5px;
-  height: 10px;
-  line-height: 10px;
-}
 .event .dragged.actions { background-color: #333; }
 .event .dragged.people { background-color: #b94a48; }
 .event .dragged.organizations { background-color: #3a87ad; }
@@ -291,12 +286,12 @@ table.tablesorter th {
   padding-bottom: 120px;
 }
 
-#intro h1, #intro h2, #intro h3, #intro p { color: #fff; font-family: 'Dosis', sans-serif; }
+#intro h1, #intro h2, #intro h3, #intro p { color: #fff; font-family: 'Dosis', sans-serif; margin: 0; }
 #intro .span8, #intro .span4, #intro .intro-graph { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
 #intro .span8, #intro .span4 { min-height: 170px; }
 #intro .span8 { background: #2F9CD5; padding: 25px; }
-#intro .span8 h1 { text-transform: uppercase; font-size: 40px; }
-#intro .span8 h2 { font-weight: normal; }
+#intro .span8 h1 { text-transform: uppercase; font-weight: bold; font-size: 40px; }
+#intro .span8 h2 { font-weight: normal; font-size: 24px; }
 #intro .span8 p, #intro .span3 p { font-size: 16px; }
 #intro .span4 { background: #A0D2ED; padding: 10px 20px; }
 #intro .span4 h3 { font-weight: normal; font-size: 22px; }
