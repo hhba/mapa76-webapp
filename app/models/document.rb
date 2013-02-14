@@ -14,6 +14,12 @@ class Document
     }
   end
 
+  def original_file_url
+    if original_file
+      "#{Mapa76::Application.config.uploads_path}/#{CGI.escape(original_file)}"
+    end
+  end
+
 protected
   def enqueue_process
     # TODO Create empty class NormalizationTask

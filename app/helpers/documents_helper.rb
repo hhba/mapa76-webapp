@@ -7,12 +7,6 @@ module DocumentsHelper
     end
   end
 
-  def original_file_url(document)
-    if document.original_file
-      "#{Mapa76::Application.config.uploads_path}/#{CGI.escape(document.original_file)}"
-    end
-  end
-
   def status(document)
     {
       id:              document._id,

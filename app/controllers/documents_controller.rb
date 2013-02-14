@@ -42,4 +42,13 @@ class DocumentsController < ApplicationController
     @addresses = @document.addresses_found.select { |addr| addr.geocoded? }
     @center = @addresses.first
   end
+
+  def download
+    @document = Document.find(params[:id])
+    if url = @document.original_file_url
+      redirect_to url
+    else
+      raise ActionController::RoutingError.new("Not Found")
+    end
+  end
 end
