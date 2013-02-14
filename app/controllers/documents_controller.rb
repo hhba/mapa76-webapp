@@ -22,6 +22,25 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
+  def create
+    @file = params[:document].delete(:file)
+    @document = Document.new(params[:document])
+    @document.original_file = CGI.escape(@file.original_filename)
+
+    path = File.join(Rails.root, "public", Mapa76::Application.config.uploads_path, @document.original_file)
+    logger.debug "Save uploaded file to '#{path}'"
+    File.open(path, 'wb') do |file|
+      file.write(@file.read)
+    end
+    logger.debug "File saved"
+
+    if @document.save
+      redirect_to :action => :index
+    else
+      render :new
+    end
+  end
+
   def show
     @document = Document.find(params[:id])
   end
