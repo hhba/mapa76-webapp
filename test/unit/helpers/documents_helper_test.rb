@@ -28,15 +28,6 @@ class DocumentsHelperText < ActiveSupport::TestCase
     end
   end
 
-  context "#original_file_url" do
-    should "return the URL path to the original uploaded file" do
-      @document.update_attributes :original_file => "my_doc.pdf"
-
-      url = @template.original_file_url(@document)
-      assert_equal "#{Mapa76::Application.config.uploads_path}/my_doc.pdf", url
-    end
-  end
-
   context "#status" do
     should "return a Hash with the status of the document" do
       @document.update_attributes :percentage => 100, :category => "Veredicto"

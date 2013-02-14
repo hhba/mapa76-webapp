@@ -29,5 +29,12 @@ class DocumentTest < ActiveSupport::TestCase
 
     should "generate CSV with all the people"
     should "Export registers as CSV"
+
+    context "#original_file_url" do
+      should "return the URL path to the original uploaded file" do
+        @document.update_attributes :original_file => "my_doc.pdf"
+        assert_equal "#{Mapa76::Application.config.uploads_path}/my_doc.pdf", @document.original_file_url
+      end
+    end
   end
 end
