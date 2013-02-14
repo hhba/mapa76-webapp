@@ -31,6 +31,9 @@ $(document).ready(function(){
       $("#document").html(Mustache.render($("#documentContextError").html()));
     });
   });
+  $(".documents tbody tr .tools").live("click", function(e) {
+    e.stopPropagation();
+  });
   $(".with-scrollbar").mCustomScrollbar({
     mouseWheel: 5,
     scrollInertia: 250,
