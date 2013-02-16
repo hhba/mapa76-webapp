@@ -1,4 +1,13 @@
 -# encoding: utf-8
+%header
+  .subnav.subnav-fixed
+    %ul.nav.nav-pills
+      %li{:class => current_page?(documents_path) ? "active" : nil}
+        %a{:href => documents_path}= t "documents.documents"
+      %li{:class => current_page?(search_documents_path) ? "active" : nil}
+        %a{:href => search_documents_path}= t "documents.search"
+      %li{:class => current_page?(new_document_path) ? "active" : nil}
+        %a{:href => new_document_path}= t "documents.new"
 
 .row-fluid
   .content
