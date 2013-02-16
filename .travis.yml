@@ -5,3 +5,4 @@ services:
   - mongodb
   - elasticsearch
 bundler_args: --without development
+before_install: ./script/ci/replace_local_paths.sh
