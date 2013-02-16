@@ -112,7 +112,7 @@
       width:100%;
       position:relative;
       overflow:hidden;
-      height:800px; /* FIX THIS!!! */
+      height:220px;
     }
     .TS-card_scroller_inner {
       width:100%;
