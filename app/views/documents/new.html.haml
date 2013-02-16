@@ -1,9 +1,18 @@
-.row-fluid
-  .span4
-    %h1 Importar documento
-    = simple_form_for @document do |f|
-      = f.input :title
-      = f.input :description
-      = f.input :category, :collection => %w(Alegato Articulo Fundamentos Pericia Sentencia Testimonio Veredicto otro)
-      = f.input :file, :as => :file
-      = f.button :submit
+%header
+  .subnav.subnav-fixed
+    %ul.nav.nav-pills
+      %li{:class => current_page?(documents_path) ? "active" : nil}
+        %a{:href => documents_path}= t "documents.documents"
+      %li{:class => current_page?(new_document_path) ? "active" : nil}
+        %a{:href => new_document_path}= t "documents.new"
+
+- content_for :free do
+  .row-fluid
+    .span4
+      %h1 Importar documento
+      = simple_form_for @document do |f|
+        = f.input :title
+        = f.input :description
+        = f.input :category, :collection => %w(Alegato Articulo Fundamentos Pericia Sentencia Testimonio Veredicto otro)
+        = f.input :file, :as => :file
+        = f.button :submit
