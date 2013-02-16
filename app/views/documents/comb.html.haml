@@ -31,7 +31,7 @@
 
 / Document content
 .row-fluid
-  .timeline-container
+  .timeline-container{:style => "display: none"}
     #timeline{:data => {:dates => @document.time_setter.to_json}}
   .timeline-button
     %button.btn.btn-mini.showTimeline{:type => "button"} Mostrar línea del tiempo
