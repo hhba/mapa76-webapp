@@ -1,6 +1,4 @@
 class Document
-  after_create :enqueue_process
-
   # FIXME this should be a helper
   def context
     {
@@ -18,12 +16,5 @@ class Document
     if original_file
       "#{Mapa76::Application.config.uploads_path}/#{CGI.escape(original_file)}"
     end
-  end
-
-protected
-  def enqueue_process
-    # TODO Create empty class NormalizationTask
-    #Resque.enqueue(NormalizationTask, id)
-    return true
   end
 end
