@@ -4,5 +4,6 @@ rvm:
 services:
   - mongodb
   - elasticsearch
+  - redis-server
 bundler_args: --without development
 before_install: ./script/ci/replace_local_paths.sh
