@@ -11,10 +11,4 @@ class Document
       :places => (self.places_found + self.addresses_found).group_by(&:text).map { |k, v| { text: k, mentions: v.size} }
     }
   end
-
-  def original_file_url
-    if original_file
-      "#{Mapa76::Application.config.uploads_path}/#{CGI.escape(original_file)}"
-    end
-  end
 end
