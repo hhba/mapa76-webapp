@@ -52,7 +52,8 @@ FactoryGirl.define do
   end
 
   factory :document do
-    sequence(:title)         { |n| "text_#{ n }" }
-    sequence(:original_file) { |n| "text_#{ n }" }
+    sequence(:title)             { |n| "text_#{ n }" }
+    sequence(:original_filename) { |n| "text_#{ n }" }
+    file { StringIO.new("") }
   end
 end

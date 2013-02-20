@@ -10,24 +10,6 @@ class DocumentsHelperText < ActiveSupport::TestCase
     @document = create :document
   end
 
-  context "#thumbnail_url" do
-    should "return the URL path to the thumbnail of the document" do
-      @document.update_attributes :thumbnail_file => "my_thumb.png"
-
-      url = @template.thumbnail_url(@document)
-      assert_equal "#{Mapa76::Application.config.thumbnails_path}/my_thumb.png", url
-    end
-
-    context "document has not thumbnail" do
-      should "return the URL path to the placeholder image" do
-        @document.update_attributes :thumbnail_file => nil
-
-        url = @template.thumbnail_url(@document)
-        assert_equal "/assets/thumbnail_placeholder.png", url
-      end
-    end
-  end
-
   context "#status" do
     should "return a Hash with the status of the document" do
       @document.update_attributes :percentage => 100, :category => "Veredicto"
