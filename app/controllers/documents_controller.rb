@@ -26,12 +26,13 @@ class DocumentsController < ApplicationController
     file = params[:document].delete(:file)
     @document = Document.new(params[:document])
     @document.original_filename = file.original_filename
-    @document.file = file
+    @document.file = file.path
 
     if @document.save
       redirect_to :action => :index
     else
-      render :new
+      #flash[:error] = @document.errors
+      redirect_to :back
     end
   end
 
@@ -57,11 +58,9 @@ class DocumentsController < ApplicationController
   end
 
   def download
+    # TODO check if dumping to a temp file and sending that file is more
+    # memory-efficient...
     @document = Document.find(params[:id])
-    if url = @document.original_file_url
-      redirect_to url
-    else
-      raise ActionController::RoutingError.new("Not Found")
-    end
+    send_data @document.file.data, filename: @document.original_filename
   end
 end

@@ -44,6 +44,30 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_select 'h1', "Importar documento"
     end
 
+    should "create a new document and upload file" do
+      Tempfile.open("doc.txt") do |fd|
+        fd.write("document content")
+        fd.close
+
+        document = build :document
+        file = Rack::Test::UploadedFile.new(fd.path, "text/plain")
+
+        assert_difference("Document.count") do
+          post :create, document: { title: @document.title, file: file }
+        end
+
+        # FIXME should save errors somewhere, flash?
+        #assert flash[:error].empty?
+
+        assert_redirected_to documents_path
+        # FIXME should be the document profile page:
+        #assert_redirected_to document_path(assigns(:document))
+
+        created = Document.where(title: @document.title).last
+        assert_equal "document content", created.file.data
+      end
+    end
+
     should "Retrieve a JSON with the statuses" do
       @document.update_attribute :percentage, 100
       get :status, :format => :json
@@ -67,6 +91,13 @@ class DocumentsControllerTest < ActionController::TestCase
       get :comb, :id => @document.id
 
       assert_response :success
+    end
+
+    should "download documents original file" do
+      get :download, :id => @document.id
+
+      assert_response :success
+      assert_equal "empty content", @response.body
     end
   end
 end
