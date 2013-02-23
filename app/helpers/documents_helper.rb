@@ -1,7 +1,7 @@
 module DocumentsHelper
   def thumbnail_url(document)
     if document.thumbnail_file
-      "#{Mapa76::Application.config.thumbnails_path}/#{CGI.escape(document.thumbnail_file)}"
+      "#{Mapa76::Application.config.thumbnails_path}/#{document.id}.png"
     else
       asset_path("thumbnail_placeholder.png")
     end

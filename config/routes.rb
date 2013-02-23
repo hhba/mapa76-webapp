@@ -24,4 +24,6 @@ Mapa76::Application.routes.draw do
   end
 
   root :to => "welcome#index"
+
+  match "#{Mapa76::Application.config.thumbnails_path}/:id" => "documents#generate_thumbnail"
 end

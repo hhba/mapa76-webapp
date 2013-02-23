@@ -63,4 +63,17 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     send_data @document.file.data, filename: @document.original_filename
   end
+
+  def generate_thumbnail
+    @document = Document.find(params[:id])
+    path = File.join(Rails.root, "public", request.path)
+    File.open(path, "wb") do |fd|
+      @document.thumbnail_file.each do |chunk|
+        fd.write(chunk)
+      end
+    end
+    redirect_to request.path
+  rescue Mongoid::Errors::DocumentNotFound
+    render :text => nil, :status => 404
+  end
 end
