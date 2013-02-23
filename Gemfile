@@ -30,9 +30,10 @@ end
 gem 'devise'
 gem 'haml'
 gem 'sass'
-gem "haml-rails"
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mongoid'
 gem 'mongoid-pagination'
 gem 'simple_form'
 gem 'unicorn'
+gem 'will_paginate-bootstrap', :require => "will_paginate-bootstrap"

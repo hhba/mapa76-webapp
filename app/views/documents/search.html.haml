@@ -59,6 +59,8 @@
                       - else
                         .progress.progress-striped.active
                           .bar{:style => "width: #{document.state_to_percentage}%;"}
+    .row-fluid
+      = will_paginate @search, :renderer => BootstrapPagination::Rails
 
 - content_for :sidebar do
   %ul.nav.nav-list#sidebar
