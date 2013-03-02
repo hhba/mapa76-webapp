@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '~>3.2.8'
 gem 'mapa76-core', :path => "../mapa76-core"
 
 group :assets do
