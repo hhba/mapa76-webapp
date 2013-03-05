@@ -1,2 +1,10 @@
-%h1 Projects#show
-%p Find me in app/views/projects/show.html.haml
+= content_for :breadcrumbs do
+  %ul.breadcrumb
+    %li
+      = link_to "Proyectos", projects_path
+      %span.divider
+    %li.active
+      = @project.name
+
+%h1
+  = @project.name

@@ -42,21 +42,11 @@
                   = link_to t("sessions.sign_in"), new_user_session_path
                 %li
                   = link_to t("sessions.sign_up"), new_user_registration_path
-
-      -#
-        %ul.breadcrumb
-          %li
-            = link_to t("home"), root_path
-            %span.divider /
-          - if current_project
-            %li
-              = link_to current_project.name, project_path(current_project)
-              %span.divider /
-          - if current_document
-            %li.active
-              = current_document.name
-
     .container-fluid
+      - if content_for :breadcrumbs
+        .row-fluid
+          .content.span12
+            = yield :breadcrumbs
       .row-fluid
         .content.span8
           - if content_for?(:hero)

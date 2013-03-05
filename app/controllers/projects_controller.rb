@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    current_user.projects.find params[:id]
   end
 
   def new
