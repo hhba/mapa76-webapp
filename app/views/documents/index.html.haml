@@ -1,6 +1,4 @@
-- content_for :javascripts do
-  = javascript_include_tag "documents.js"
-
+-# encoding: utf-8
 %header
   .subnav.subnav-fixed
     %ul.nav.nav-pills
@@ -9,74 +7,77 @@
       %li{:class => current_page?(new_document_path) ? "active" : nil}
         %a{:href => new_document_path}= t "documents.new"
 
-- content_for :free do
-  .row-fluid
-    .content.span7
-      .row-fluid
-        .alert.fade.in.alert-success#stillProcessing{:style => 'display: none;'}
-          %a.close{:href => '#', 'data-dismiss' => 'alert'}×
-          %strong
-            Recuerde que el procesamiento de tareas puede tomar algunos minutos.
-      .row-fluid
-        %table{:class => 'table documents', :id => 'sorteable'}
-          %thead
-            %tr
-              %th{:style => "width: 70px"}
-              %th
-                %a{:href => '#', "data-sort" => "name"}Título
-              %th
-                %a{:href => '#', "data-sort" => "name"}Tipo
-              %th
-                %a{:href => '#', "data-sort" => "date"}Fecha
-              %th
-                %a{:href => '#', "data-sort" => "status"}Estado
-          %tbody
-            - @documents.each do |document|
-              = render "document_row", :document => document
+.row-fluid
+  .content
+    .row-fluid
+      %h2
+        = @search.total
+        resultados
+    .row-fluid
+      %table{:class => 'table documents'}
+        %thead
+          %tr
+            %th{:style => "width: 70px"}
+            %th
+        %tbody
+          - @results.each do |item, document|
+            %tr{:"data-id" => document.id}
+              %td{:style => "width: 70px"}
+                .thumbnail
+                  %img{:src => thumbnail_url(document)}
+              %td
+                %h4.heading= item.highlight.try(:[], :heading).try(:first).try(:html_safe) || document.heading
+                .small
+                  = document.category
+                  = document._id.generation_time.strftime("%d/%m/%y")
+                  - if item.highlight && pages = item.highlight.to_hash.keys.grep(/^\d+$/).map { |p| p.to_s.to_i }
+                    %ul.highlights
+                      - pages.sort.each do |page_num|
+                        %li
+                          %strong= "p.#{page_num}"
+                          = "..."
+                          = item.highlight[page_num.to_s].first.gsub("\n", " ").html_safe
+                          = "..."
+                -#
+                  .tools
+                    .btn-group.pull-right
+                      %a.btn.btn-small{:href => '#', :class => (document.readable? ? nil : "disabled")}
+                        %i.icon-edit{:title => "Editar"}
+                      %a.btn.btn-small{:href => '#', :class => (document.geocoded? ? nil : "disabled")}
+                        %i.icon-globe{:title => "Mapa"}
+                      %a.btn.btn-small{:href => '#'}
+                        %i.icon-download-alt{:title => "Descargar"}
+                      %a.btn.btn-small{:href => '#', :class => (document.exportable? ? nil : "disabled")}
+                        %i.icon-list-alt{:title => "Exportar a CSV"}
+                    .state.pull-right
+                      - if document.processed?
+                        .hidden{:style => "display: none;"}
+                          .progress.progress-striped.active
+                            .bar{:style => "width: 100%;"}
+                      - else
+                        .progress.progress-striped.active
+                          .bar{:style => "width: #{document.state_to_percentage}%;"}
+    .row-fluid
+      = will_paginate @search, :renderer => BootstrapPagination::Rails
 
-    .sidebar.with-scrollbar.span5{:style => "background-color: #fff; border: 0"}
-      .with-scrollbar-inner#document
-        %h4
-          Haga clic en un documento para ver más información
+- content_for :sidebar do
+  %ul.nav.nav-list#sidebar
+    %li.nav-header Filtros de búsqueda
+    %li
+      %ul#filters
+        %li.document
+          Documento
+          %form.navbar-search.pull-left
+            %input.search-query{name: "q", value: params[:q], type: "search", placeholder: "Buscar por título o contenido"}
+            %button.btn{type: "submit"} Buscar
 
-%script#documentContextError{:type => "text/template"}
-  .alert.alert-error
-    Ocurrió un error al obtener información de contexto del documento.
+    %li.nav-header Documentos
+    %li.active
+      %a Todos los documentos
+    %li
+      %a Mis documentos
+    -#
+      %li
+        %a Mis documentos publicados
 
-%script#documentContext{:type => "text/template"}
-  %h4 {{ heading }}
-  = render 'context_tabs'
-
-%script#documentRowTemplate{:type => 'text/template'}
-  {{#documents}}
-  %tr{:"data-id" => '{{id}}'}
-    %td{:style => "width: 70px"}
-      .thumbnail
-        %img{src: '{{{thumbnail}}}'}
-    %td
-      .title= '{{heading}}'
-      .tools
-        .btn-group
-          %a.btn.btn-small{:href => '/documents/{{id}}/comb', :class => "{{^readable}}disabled{{/readable}}"}
-            %i.icon-edit{:title => "Editar"}
-          -#
-            %a.btn.btn-small{:href => '/documents/{{id}}/map', :class => "{{^geocoded}}disabled{{/geocoded}}"}
-              %i.icon-globe{:title => "Mapa"}
-          %a.btn.btn-small{:href => '/documents/{{id}}/download', :class => "{{^readable}}disabled{{/readable}}"}
-            %i.icon-download-alt{:title => "Descargar"}
-          -#
-            %a.btn.btn-small{:href => '/documents/{{id}}.csv', :class => "{{^exportable}}disabled{{/exportable}}"}
-              %i.icon-list-alt{:title => "Exportar a CSV"}
-    %td
-      = '{{category}}'
-    %td
-      = '{{{generation_time}}}'
-    %td.state
-      {{#completed}}
-      Finalizado
-      {{/completed}}
-      {{^completed}}
-      .progress.progress-striped.active
-        .bar{:style => "width: {{percentage}}%;"}
-      {{/completed}}
-  {{/documents}}
+    %li.nav-header Proyectos

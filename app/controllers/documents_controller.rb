@@ -2,10 +2,6 @@ class DocumentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @documents = Document.all
-  end
-
-  def search
     @page = params[:page] || 1
     @search = Document.tire.search(page: @page, per_page: 10) do |s|
       s.fields :id
