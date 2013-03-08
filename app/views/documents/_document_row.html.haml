@@ -3,7 +3,17 @@
     .thumbnail
       %img{:src => thumbnail_url(document)}
   %td
-    .title= document.heading
+    %h4.title= item.highlight.try(:[], :title).try(:first).try(:html_safe) || document.title
+    .small
+      = document.category
+      = document._id.generation_time.strftime("%d/%m/%y")
+      - if item.highlight && pages = item.highlight.to_hash.keys.grep(/^\d+$/).map { |p| p.to_s.to_i }
+        %ul.highlights
+          - pages.sort.each do |page_num|
+            %li
+              %strong= "p.#{page_num}"
+              = "..."
+              = item.highlight[page_num.to_s].first.gsub("\n", " ").html_safe
     .tools
       .btn-group
         %a.btn.btn-small{:href => "/documents/#{document.id}/comb", :class => (document.readable? ? nil : "disabled")}
@@ -16,10 +26,7 @@
         -#
           %a.btn.btn-small{:href => "/documents/#{document.id}.csv", :class => (document.exportable? ? nil : "disabled")}
             %i.icon-list-alt{:title => "Exportar a CSV"}
-  %td
-    = document.category
-  %td
-    = document._id.generation_time.strftime("%d/%m/%y")
+            = "..."
   %td.state
     - if document.processed?
       Finalizado

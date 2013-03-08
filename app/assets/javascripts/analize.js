@@ -1,6 +1,6 @@
 var AnalyzeApp = new (Backbone.Router.extend({
   initialize: function() {
-    var document_id = $("#document-heading").attr("data-document-id");
+    var document_id = $("#document-title").attr("data-document-id");
 
     this.document = new Document({ id: document_id });
     this.documentView = new DocumentView({ model: this.document });

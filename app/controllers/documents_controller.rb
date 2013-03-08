@@ -8,7 +8,7 @@ class DocumentsController < ApplicationController
       s.query do |q|
         params[:q].blank? ? q.all : q.string(params[:q])
       end
-      s.highlight :title, :heading, *(1..10000).map(&:to_s)
+      s.highlight :title, *(1..10000).map(&:to_s)
     end
     @results = @search.results.map do |item|
       [item, item.load]

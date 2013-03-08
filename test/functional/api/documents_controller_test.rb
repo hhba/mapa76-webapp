@@ -11,7 +11,7 @@ class Api::DocumentsControllerTest < ActionController::TestCase
       status = JSON.parse(@response.body)
 
       assert_response :success
-      assert_equal @document.heading, status['heading']
+      assert_equal @document.title, status['title']
     end
   end
 end

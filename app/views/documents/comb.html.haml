@@ -36,8 +36,8 @@
   .timeline-button
     %button.btn.btn-mini.showTimeline{:type => "button"} Mostrar línea del tiempo
   .document
-    %h2{:id => "document-heading", "data-document-id" => @document.id}
-      = @document.heading
+    %h2{:id => "document-title", "data-document-id" => @document.id}
+      = @document.title
     .pages
       - @empty_pages.each do |page|
         .page.empty{:id => page.num, :"data-id" => page.id, :style => "width: 100%; height: #{page.height}px"}
@@ -125,7 +125,7 @@
 %script#documentContextTemplate{:type => "text/template"}
   .breadcrumb
     %a{:href => "/documents/{{id}}", target: "_blank"}
-      {{heading}}
+      {{title}}
   %dl.information
     %dt Categoría
     %dd {{category}}
@@ -134,7 +134,7 @@
 %script#personContext{:type => "text/template"}
   .breadcrumb
     %a{:href => "/documents/#{@document.id}"}
-      = @document.heading
+      = @document.title
     >
     %a{:href => "/person/{{id}}"}
       {{name}}
