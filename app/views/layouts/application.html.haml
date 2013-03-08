@@ -43,7 +43,7 @@
                 %li
                   = link_to t("sessions.sign_up"), new_user_registration_path
     .container-fluid
-      - if content_for :breadcrumbs
+      - if content_for?(:breadcrumbs)
         .row-fluid
           .content.span12
             = yield :breadcrumbs

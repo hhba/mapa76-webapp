@@ -6,7 +6,8 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    @search = Document.tire.search do |s|
+    @page = params[:page] || 1
+    @search = Document.tire.search(page: @page, per_page: 10) do |s|
       s.fields :id
       s.query do |q|
         params[:q].blank? ? q.all : q.string(params[:q])
