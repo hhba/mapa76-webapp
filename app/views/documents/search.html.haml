@@ -65,9 +65,21 @@
 - content_for :sidebar do
   %ul.nav.nav-list#sidebar
     %li.nav-header Filtros de búsqueda
-    %ul#filters
-      %li.document
-        Documento
-        %form.navbar-search.pull-left
-          %input.search-query{name: "q", value: params[:q], type: "search", placeholder: "Buscar por título o contenido"}
-          %button.btn{type: "submit"} Buscar
+    %li
+      %ul#filters
+        %li.document
+          Documento
+          %form.navbar-search.pull-left
+            %input.search-query{name: "q", value: params[:q], type: "search", placeholder: "Buscar por título o contenido"}
+            %button.btn{type: "submit"} Buscar
+
+    %li.nav-header Documentos
+    %li.active
+      %a Todos los documentos
+    %li
+      %a Mis documentos
+    -#
+      %li
+        %a Mis documentos publicados
+
+    %li.nav-header Proyectos
