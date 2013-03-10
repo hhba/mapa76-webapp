@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  // TODO sidebar scrollbar
   $(".with-scrollbar").mCustomScrollbar({
     mouseWheel: 5,
     scrollInertia: 250,
@@ -23,8 +22,7 @@ $(document).ready(function(){
       }).tablesorter({
         sortList: [[1,1]]
       });
-      // TODO update sidebar scrollbar
-      //$(".with-scrollbar").mCustomScrollbar("update");
+      $(".with-scrollbar").mCustomScrollbar("update");
     }).error(function() {
       $("#context").html(Mustache.render($("#documentContextError").html()));
     });
@@ -32,12 +30,9 @@ $(document).ready(function(){
     return false;
   });
 
-  /*
-  // TODO Update scrollbar when changing tabs
   $("#context .nav a").live("click", function() {
     $(".with-scrollbar").mCustomScrollbar("update");
   });
-  */
 
   /*
   // Auto-update documents state

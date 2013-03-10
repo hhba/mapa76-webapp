@@ -57,8 +57,9 @@
               = yield :row
           = yield
         - if content_for?(:sidebar)
-          .sidebar.span4
-            .sidebar-nav
+
+          .sidebar.with-scrollbar.span4
+            .sidebar-nav.with-scrollbar-inner
               = yield :sidebar
 
     - if content_for?(:free)
