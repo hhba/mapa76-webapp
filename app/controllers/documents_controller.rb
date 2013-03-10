@@ -13,6 +13,7 @@ class DocumentsController < ApplicationController
     @results = @search.results.map do |item|
       [item, item.load]
     end
+    @projects = current_user.projects
   end
 
   def new

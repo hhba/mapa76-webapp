@@ -11,10 +11,19 @@
         %ul.highlights
           - pages.sort.each do |page_num|
             %li
-              %strong= "p.#{page_num}"
+              %b= "p.#{page_num}"
               = "..."
               = item.highlight[page_num.to_s].first.gsub("\n", " ").html_safe
-    .tools
+  %td.state
+    - if document.completed?
+      Finalizado
+      .hidden{:style => "display: none;"}
+        .progress.progress-striped.active
+          .bar{:style => "width: 100%;"}
+    - else
+      .progress.progress-striped.active
+        .bar{:style => "width: #{document.percentage}%;"}
+    .tools.pull-right
       .btn-group
         %a.btn.btn-small{:href => "/documents/#{document.id}/comb", :class => (document.readable? ? nil : "disabled")}
           %i.icon-edit{:title => "Editar"}
@@ -27,12 +36,3 @@
           %a.btn.btn-small{:href => "/documents/#{document.id}.csv", :class => (document.exportable? ? nil : "disabled")}
             %i.icon-list-alt{:title => "Exportar a CSV"}
             = "..."
-  %td.state
-    - if document.processed?
-      Finalizado
-      .hidden{:style => "display: none;"}
-        .progress.progress-striped.active
-          .bar{:style => "width: 100%;"}
-    - else
-      .progress.progress-striped.active
-        .bar{:style => "width: #{document.state_to_percentage}%;"}

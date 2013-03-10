@@ -1,18 +1,34 @@
 $(document).ready(function(){
+  $(".with-scrollbar").mCustomScrollbar({
+    mouseWheel: 5,
+    scrollInertia: 250,
+    advanced: { updateOnBrowserResize: true }
+  });
+
+  /*
   // Update scrollbar when changing tabs
   $(".document .nav a").live("click", function() {
     $(".with-scrollbar").mCustomScrollbar("update");
   });
-  function checkDocumentsStatuses(){
+  */
+
+  /*
+  // Auto-update documents state
+  function checkDocumentsStatuses() {
     $.get("/documents/status", null, function(data){
       $('table.documents tbody').html(Mustache.render(template, {documents: data}));
     }, 'json');
     setTimeout(checkDocumentsStatuses, 15000 );
   }
+
   if($("table.documents").length){
     var template = $("#documentRowTemplate").html();
     checkDocumentsStatuses();
   }
+  */
+
+  /*
+  // Load document context when clicking row
   $(".documents tbody tr").live("click", function(e) {
     var url = "/documents/" + $(this).data("id") + "/context.json";
     var template = $("#documentContext").html();
@@ -31,14 +47,13 @@ $(document).ready(function(){
       $("#document").html(Mustache.render($("#documentContextError").html()));
     });
   });
+  // Stop row click propagation when clicking on the documents toolbar
   $(".documents tbody tr .tools").live("click", function(e) {
     e.stopPropagation();
   });
-  $(".with-scrollbar").mCustomScrollbar({
-    mouseWheel: 5,
-    scrollInertia: 250,
-    advanced: { updateOnBrowserResize: true }
-  });
+  */
+
+  /*
   // Blacklist
   $(".blacklist a").live("click", function(event){
     event.preventDefault();
@@ -51,4 +66,5 @@ $(document).ready(function(){
       }, null);
     }
   });
+  */
 });

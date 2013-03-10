@@ -1,4 +1,7 @@
 -# encoding: utf-8
+- content_for :javascripts do
+  = javascript_include_tag "documents.js"
+
 %header
   .subnav.subnav-fixed
     %ul.nav.nav-pills
@@ -9,6 +12,11 @@
 
 .row-fluid
   .content
+    .row-fluid
+      .alert.fade.in.alert-success#stillProcessing{:style => 'display: none;'}
+        %a.close{:href => '#', 'data-dismiss' => 'alert'}×
+        %strong
+          Recuerde que el procesamiento de tareas puede tomar algunos minutos.
     .row-fluid
       %h2
         = @search.total
@@ -36,13 +44,19 @@
             %input.search-query{name: "q", value: params[:q], type: "search", placeholder: "Buscar por título o contenido"}
             %button.btn{type: "submit"} Buscar
 
-    %li.nav-header Documentos
-    %li.active
-      %a Todos los documentos
-    %li
-      %a Mis documentos
+    -# TODO Additional filters
     -#
+      %li.nav-header Documentos
+      %li.active
+        %a Todos los documentos
       %li
-        %a Mis documentos publicados
+        %a Mis documentos
+      -#
+        %li
+          %a Mis documentos publicados
 
-    %li.nav-header Proyectos
+      - if not @projects.empty?
+        %li.nav-header Proyectos
+        - @projects.each do |project|
+          %li
+            %a= project.name
