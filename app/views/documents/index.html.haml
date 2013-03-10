@@ -60,3 +60,16 @@
         - @projects.each do |project|
           %li
             %a= project.name
+
+    %li.nav-header Contexto
+    %li
+      #context
+        .alert.alert-info
+          Haga clic en un documento para ver más información
+
+%script#documentContextError{:type => "text/template"}
+  .alert.alert-error
+    Ocurrió un error al obtener información de contexto del documento.
+
+%script#documentContext{:type => "text/template"}
+  = render 'context_tabs'

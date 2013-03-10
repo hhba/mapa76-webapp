@@ -1,9 +1,10 @@
 %tr{:"data-id" => document.id}
   %td{:style => "width: 70px"}
-    .thumbnail
+    %a.thumbnail{:href => "#"}
       %img{:src => thumbnail_url(document)}
   %td
-    %h4.title= item.highlight.try(:[], :title).try(:first).try(:html_safe) || document.title
+    %h4.title
+      %a{:href => "#"}= item.highlight.try(:[], :title).try(:first).try(:html_safe) || document.title
     .small
       = document.category
       = document._id.generation_time.strftime("%d/%m/%y")

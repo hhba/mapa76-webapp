@@ -1,13 +1,40 @@
 $(document).ready(function(){
+  // TODO sidebar scrollbar
   $(".with-scrollbar").mCustomScrollbar({
     mouseWheel: 5,
     scrollInertia: 250,
     advanced: { updateOnBrowserResize: true }
   });
 
+  $(".documents .title a, a.thumbnail").click(function() {
+    var $docRow = $(this).parents("tr");
+
+    // Mark this document as "selected"
+    $docRow.siblings().removeClass("selected");
+    $docRow.addClass("selected");
+
+    $("#context").empty().spin();
+
+    var url = "/documents/" + $docRow.data("id") + "/context.json";
+    $.getJSON(url, null, function(data) {
+      $("#context").html(Mustache.render($("#documentContext").html(), data));
+      $("#context .tablesorter").filter(function() {
+        return $(this).find("tbody tr").length > 0;
+      }).tablesorter({
+        sortList: [[1,1]]
+      });
+      // TODO update sidebar scrollbar
+      //$(".with-scrollbar").mCustomScrollbar("update");
+    }).error(function() {
+      $("#context").html(Mustache.render($("#documentContextError").html()));
+    });
+
+    return false;
+  });
+
   /*
-  // Update scrollbar when changing tabs
-  $(".document .nav a").live("click", function() {
+  // TODO Update scrollbar when changing tabs
+  $("#context .nav a").live("click", function() {
     $(".with-scrollbar").mCustomScrollbar("update");
   });
   */
@@ -25,32 +52,6 @@ $(document).ready(function(){
     var template = $("#documentRowTemplate").html();
     checkDocumentsStatuses();
   }
-  */
-
-  /*
-  // Load document context when clicking row
-  $(".documents tbody tr").live("click", function(e) {
-    var url = "/documents/" + $(this).data("id") + "/context.json";
-    var template = $("#documentContext").html();
-    $(this).siblings().removeClass("selected");
-    $(this).addClass("selected");
-    $("#document").html("").spin();
-    $.getJSON(url, null, function(data) {
-      $("#document").html(Mustache.render(template, data));
-      $("#document .tablesorter").filter(function() {
-        return $(this).find("tbody tr").length > 0;
-      }).tablesorter({
-        sortList: [[1,1]]
-      });
-      $(".with-scrollbar").mCustomScrollbar("update");
-    }).error(function() {
-      $("#document").html(Mustache.render($("#documentContextError").html()));
-    });
-  });
-  // Stop row click propagation when clicking on the documents toolbar
-  $(".documents tbody tr .tools").live("click", function(e) {
-    e.stopPropagation();
-  });
   */
 
   /*
