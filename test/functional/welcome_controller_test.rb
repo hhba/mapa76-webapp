@@ -3,7 +3,7 @@ require 'test_helper'
 class WelcomeControllerTest < ActionController::TestCase
   context "WelcomeController" do
     setup do
-      @document = create :document
+      @document = create :document, public: true
     end
 
     should "Respond 200" do
