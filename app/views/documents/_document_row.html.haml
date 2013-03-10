@@ -11,7 +11,8 @@
         %ul.highlights
           - pages.sort.each do |page_num|
             %li
-              %b= "p.#{page_num}"
+              %a{:href => "/documents/#{document.id}/comb##{page_num}"}
+                %b= "p.#{page_num}"
               = "..."
               = item.highlight[page_num.to_s].first.gsub("\n", " ").html_safe
   %td.state
