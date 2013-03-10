@@ -34,7 +34,7 @@
               Personas
             %th
               Menciones
-            %th
+            -#%th
         %tbody
           {{#people}}
           %tr
@@ -42,9 +42,10 @@
               {{name}}
             %td
               {{mentions}}
-            %td.blacklist
-              %a{href: "/people/{{id}}/blacklist", data: {name: "{{name}}"}}
-                %i.icon-remove
+            -#
+              %td.blacklist
+                %a{href: "/people/{{id}}/blacklist", data: {name: "{{name}}"}}
+                  %i.icon-remove
           {{/people}}
       -#%a{href: '/documents/{{id}}/people'} Lista completa
     .tab-pane#organizations
