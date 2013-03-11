@@ -2,21 +2,18 @@ class DocumentsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @documents = Document.all
-  end
-
-  def search
     @page = params[:page] || 1
     @search = Document.tire.search(page: @page, per_page: 10) do |s|
       s.fields :id
       s.query do |q|
         params[:q].blank? ? q.all : q.string(params[:q])
       end
-      s.highlight :title, :heading, *(1..10000).map(&:to_s)
+      s.highlight :title, *(1..10000).map(&:to_s)
     end
     @results = @search.results.map do |item|
       [item, item.load]
     end
+    @projects = current_user.projects
   end
 
   def new

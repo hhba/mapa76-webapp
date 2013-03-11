@@ -1,17 +1,28 @@
 .document{data: { id: "{{id}}" }}
   %ul.nav.nav-tabs{:class => "small"}
-    %li.active
+    {{#has_registers}}
+    %li
       %a{href: '#facts', data: { toggle: 'tab'}} Hechos
+    {{/has_registers}}
+    {{#has_people}}
     %li
       %a{href: '#names', data: { toggle: 'tab'}} Nombres
+    {{/has_people}}
+    {{#has_organizations}}
     %li
       %a{href: '#organizations', data: { toggle: 'tab'} } Organizaciones
+    {{/has_organizations}}
+    {{#has_dates}}
     %li
       %a{href: '#dates', data: { toggle: 'tab'} } Fechas
+    {{/has_dates}}
+    {{#has_places}}
     %li
       %a{href: '#places', data: { toggle: 'tab'} } Lugares
+    {{/has_places}}
   .tab-content
-    .tab-pane.active#facts
+    {{#has_registers}}
+    .tab-pane#facts
       %ul
         {{#registers}}
         %li
@@ -26,15 +37,17 @@
           %span.people
             {{to_who}}
         {{/registers}}
+    {{/has_registers}}
+    {{#has_people}}
     .tab-pane#names
-      %table.table.table-bordered.table-condensed.tablesorter
+      %table.table.table-condensed.tablesorter
         %thead
           %tr
             %th
               Personas
             %th
               Menciones
-            %th
+            -#%th
         %tbody
           {{#people}}
           %tr
@@ -42,13 +55,16 @@
               {{name}}
             %td
               {{mentions}}
-            %td.blacklist
-              %a{href: "/people/{{id}}/blacklist", data: {name: "{{name}}"}}
-                %i.icon-remove
+            -#
+              %td.blacklist
+                %a{href: "/people/{{id}}/blacklist", data: {name: "{{name}}"}}
+                  %i.icon-remove
           {{/people}}
-      %a{href: '/documents/{{id}}/people'} Lista completa
+      -#%a{href: '/documents/{{id}}/people'} Lista completa
+    {{/has_people}}
+    {{#has_organizations}}
     .tab-pane#organizations
-      %table.table.table-bordered.table-condensed.tablesorter
+      %table.table.table-condensed.tablesorter
         %thead
           %tr
             %th
@@ -63,9 +79,11 @@
             %td
               {{mentions}}
           {{/organizations}}
-      %a{href: '#'} Lista completa
+      -#%a{href: '#'} Lista completa
+    {{/has_organizations}}
+    {{#has_dates}}
     .tab-pane#dates
-      %table.table.table-bordered.table-condensed.tablesorter
+      %table.table.table-condensed.tablesorter
         %thead
           %tr
             %th
@@ -80,8 +98,10 @@
             %td
               {{mentions}}
           {{/dates}}
+    {{/has_dates}}
+    {{#has_places}}
     .tab-pane#places
-      %table.table.table-bordered.table-condensed.tablesorter
+      %table.table.table-condensed.tablesorter
         %thead
           %tr
             %th
@@ -96,3 +116,4 @@
             %td
               {{mentions}}
           {{/places}}
+    {{/has_places}}

@@ -26,7 +26,7 @@ class DocumentsControllerTest < ActionController::TestCase
       assert_response :success
       assert_template :index
       assert_not_nil assigns(:documents)
-      assert_select 'td div.title', @document.heading
+      assert_select 'td div.title', @document.title
     end
 
     should "Show one document" do
@@ -74,7 +74,7 @@ class DocumentsControllerTest < ActionController::TestCase
       status = JSON.parse(@response.body).last
 
       assert_response :success
-      assert_equal @document.heading, status['heading']
+      assert_equal @document.title, status['title']
       assert_equal 100, status['percentage']
     end
 

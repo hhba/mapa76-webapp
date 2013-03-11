@@ -17,7 +17,7 @@ class DocumentsHelperText < ActiveSupport::TestCase
       status = @template.status(@document)
 
       assert_equal @document.id, status[:id]
-      assert_equal @document.heading, status[:heading]
+      assert_equal @document.title, status[:title]
       assert_equal @document.category, status[:category]
       assert_equal @document.percentage, status[:percentage]
       assert_equal @document.readable?, status[:readable]

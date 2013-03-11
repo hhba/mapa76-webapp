@@ -10,6 +10,7 @@ class ActiveSupport::TestCase
   def setup
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
+    Document.tire.index.delete
   end
 end
 

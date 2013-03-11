@@ -29,5 +29,7 @@ body { padding-top: 60px; }
 
 @import "bootswatch/docs";
 
+//= requre "jquery-mCustomScrollbar"
+
 // Whatever application styles you have go last
 @import "base";

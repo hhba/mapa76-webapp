@@ -10,7 +10,7 @@ module DocumentsHelper
   def status(document)
     {
       id:              document._id,
-      heading:         document.heading,
+      title:           document.title,
       category:        document.category,
       percentage:      document.percentage,
       readable:        document.readable?,
