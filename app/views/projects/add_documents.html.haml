@@ -1,0 +1,30 @@
+= content_for :breadcrumbs do
+  %ul.breadcrumb
+    %li
+      = link_to "Proyectos", projects_path
+      %span.divider
+    %li
+      = link_to @project.name, @project
+      %span.divider
+    %li.active
+      Agregar documentos
+.add_documents{data: {id: @project.id}}
+  .notadded
+    %h4
+      Documentos públicos y privados
+    %ul.nav.nav-tabs.nav-stacked
+      - (@private_documents + @public_documents).each do |document|
+        %li{data: {id: document.id}}
+          = document.title
+          %i.icon-chevron-right.pull-right{title: "Agregar"}
+  .added
+    %h4
+      Documentos del proyecto
+    - if @project_documents.empty?
+      .empty_documents
+    %ul
+      - @project_documents.each do |document|
+        %li{data: {id: document.id}}
+          = document.title
+          %i.close.pull-right{title: "Remover"}
+

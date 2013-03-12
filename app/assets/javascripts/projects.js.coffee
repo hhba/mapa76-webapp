@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  return unless $(".add_documents").length
+
+  $(".add_documents").on "click", ".notadded li", ->
+    self = $(@)
+    project_id = $(".add_documents").data("id")
+    $.post "/projects/#{project_id}/add_document",
+      document_id: self.data("id")
+    , (data) ->
+      console.log(data)
