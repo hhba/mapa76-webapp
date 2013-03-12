@@ -1,1 +1,4 @@
-Tire::Model::Search.index_prefix "#{Rails.application.class.parent_name.downcase}_#{Rails.env.to_s.downcase}"
+es_config = YAML.load_file(File.join(Rails.root, "config", "elasticsearch.yml"))
+config = es_config[Rails.env]
+
+Tire::Model::Search.index_prefix config["index_prefix"]
