@@ -10,3 +10,5 @@ FactoryGirl.define do
     end
   end
 end
+
+5.times { FactoryGirl.create :document, :published }
