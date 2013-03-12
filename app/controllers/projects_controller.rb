@@ -21,4 +21,15 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
+
+  def add_documents
+    @project = current_user.projects.find params[:id]
+    @public_documents = Document.public
+    @private_documents = Document.private_for(current_user)
+    @project_documents = @project.documents
+  end
+
+  def add_document
+    render :json => params[:document_id].to_json
+  end
 end
