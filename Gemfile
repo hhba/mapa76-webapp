@@ -7,6 +7,7 @@ group :assets do
   gem 'backbone-on-rails'
   gem 'jquery-ui-rails'
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'compass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
