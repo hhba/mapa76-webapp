@@ -1,9 +1,14 @@
 = content_for :breadcrumbs do
   %ul.breadcrumb
     %li.active Proyectos
-%h1 Proyectos
-%ul
-  - @projects.each do |project|
-    %li
-      = project.name
+.row-fluid
+  .span4
+    %ul.nav.nav-tabs.nav-stacked
+      - @projects.each do |project|
+        %li
+          = link_to project do
+            %i.icon-chevron-right
+            = project.name
+  .span8
+
 = link_to "New project", new_project_path
