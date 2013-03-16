@@ -8,7 +8,7 @@
       %span.divider
     %li.active
       Agregar documentos
-.add_documents{data: {id: @project.id, project_documents: @project_documents.to_json(:only => [ :_id, :title ]), other_documents: (@private_documents + @public_documents).to_json(:only => [ :_id, :title ])}}
+.add_documents{data: {"project-id" => @project.id, "own-documents" => @project_documents.to_json(:only => [ :_id, :title ]), "other-documents" => (@private_documents + @public_documents).to_json(:only => [ :_id, :title ])}}
   .notadded
   .added
 
