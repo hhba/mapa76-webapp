@@ -8,23 +8,23 @@
       %span.divider
     %li.active
       Agregar documentos
-.add_documents{data: {id: @project.id}}
+.add_documents{data: {id: @project.id, project_documents: @project_documents.to_json(:only => [ :_id, :title ]), other_documents: (@private_documents + @public_documents).to_json(:only => [ :_id, :title ])}}
   .notadded
-    %h4
-      Documentos públicos y privados
-    %ul.nav.nav-tabs.nav-stacked
-      - (@private_documents + @public_documents).each do |document|
-        %li{data: {id: document.id}}
-          = document.title
-          %i.icon-chevron-right.pull-right{title: "Agregar"}
   .added
-    %h4
-      Documentos del proyecto
-    - if @project_documents.empty?
-      .empty_documents
-    %ul
-      - @project_documents.each do |document|
-        %li{data: {id: document.id}}
-          = document.title
-          %i.close.pull-right{title: "Remover"}
 
+%script#documentList{:type => "text/template"}
+  :plain
+    <h4><%= messages.title %></h4>
+    <ul class="nav nav-tabs nav-stacked">
+      <% _.each(documents, function(document){ %>
+        <li data-id="<%= document._id %>">
+          <% if (messages.tooltip === "Remover" ) { %>
+            <i class="icon-chevron-left pull-left" title="<%= messages.tooltip %>" data-id="<%= document._id %>"></i>
+          <% } %>
+          <%= document.title %>
+          <% if (messages.tooltip === "Agregar" ) { %>
+            <i class="icon-chevron-right pull-right" title="<%= messages.tooltip %>" data-id="<%= document._id %>"></i>
+          <% } %>
+        </li>
+      <% }); %>
+    </ul>
