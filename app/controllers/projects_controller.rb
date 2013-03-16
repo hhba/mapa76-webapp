@@ -24,9 +24,9 @@ class ProjectsController < ApplicationController
 
   def add_documents
     @project = current_user.projects.find params[:id]
-    @public_documents = Document.public
-    @private_documents = Document.private_for(current_user)
     @project_documents = @project.documents
+    @public_documents = Document.public.without(@project_documents)
+    @private_documents = Document.private_for(current_user).without(@project_documents)
   end
 
   def add_document
