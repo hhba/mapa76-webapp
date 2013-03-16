@@ -30,6 +30,12 @@ class ProjectsController < ApplicationController
   end
 
   def add_document
-    render :json => params[:document_id].to_json
+    @project = Project.find params[:id]
+    render json: @project.add_document_by_id(params[:document_id]).to_json
+  end
+
+  def remove_document
+    @project = Project.find params[:id]
+    render json: @project.remove_document_by_id(params[:document_id]).to_json
   end
 end

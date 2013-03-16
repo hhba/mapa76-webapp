@@ -7,9 +7,9 @@ Mapa76::Application.routes.draw do
 
   resources :projects, :except => [:edit, :update, :delete] do
     member do
-      get  'add_documents'
-      post 'add_document'
-      post 'remove_document'
+      get    'add_documents'
+      post   'add_document'
+      delete 'remove_document'
     end
   end
 
