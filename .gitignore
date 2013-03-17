@@ -19,3 +19,4 @@ public/thumbs
 public/uploads
 public/assets
 /config/resque.yml
+config/elasticsearch.yml
