@@ -5,10 +5,8 @@ FactoryGirl.define do
 
     file { StringIO.new("empty content") }
 
-    trait :published do
+    trait :public do
       public true
     end
   end
 end
-
-5.times { FactoryGirl.create :document, :published }
