@@ -1,6 +1,12 @@
 .documents {
+  h4 {
+    display: inline-block;
+  }
   tr.selected td {
     background-color: #d7eff9;
+  }
+  .info {
+    margin-right: 1em;
   }
   .highlights {
     font-size: 12px;
@@ -11,5 +17,8 @@
   .heading em,
   .highlights em {
     background-color: yellow;
+  }
+  .tools a {
+    color: #555;
   }
 }
