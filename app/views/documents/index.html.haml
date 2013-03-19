@@ -26,7 +26,7 @@
         %thead
           %tr
             %th{:style => "width: 70px"}
-            %th{:colspan => 2}
+            %th
         %tbody
           - @results.each do |item, document|
             = render "document_row", :item => item, :document => document
