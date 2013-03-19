@@ -44,22 +44,20 @@
             %input.search-query{name: "q", value: params[:q], type: "search", placeholder: "Buscar por título o contenido"}
             %button.btn{type: "submit"} Buscar
 
-    -# TODO Additional filters
+    %li.nav-header Documentos
+    %li.active
+      %a Todos los documentos
+    %li
+      %a Mis documentos
     -#
-      %li.nav-header Documentos
-      %li.active
-        %a Todos los documentos
       %li
-        %a Mis documentos
-      -#
-        %li
-          %a Mis documentos publicados
+        %a Mis documentos publicados
 
-      - if not @projects.empty?
-        %li.nav-header Proyectos
-        - @projects.each do |project|
-          %li
-            %a= project.name
+    - if not @projects.empty?
+      %li.nav-header Proyectos
+      - @projects.each do |project|
+        %li
+          %a= project.name
 
     %li.nav-header Contexto
     %li
