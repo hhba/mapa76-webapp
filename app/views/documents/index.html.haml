@@ -46,18 +46,18 @@
 
     %li.nav-header Documentos
     %li.active
-      %a{href: "#"} Todos los documentos
+      = link_to "Todos los documentos", documents_path(params.merge(mine: nil))
     %li
-      %a{href: "#"} Mis documentos
+      = link_to "Mis documentos", documents_path(params.merge(mine: 1))
     -#
       %li
-        %a{href: "#"} Mis documentos publicados
+        = link_to "Mis documentos publicados", documents_path(params.merge(mine: 1, published: 1))
 
     - if not @projects.empty?
       %li.nav-header Proyectos
       - @projects.each do |project|
         %li
-          %a{href: "#"}
+          = link_to documents_path(params.merge(project_id: project.id, mine: nil)) do
             = project.name
             - if project.documents.count > 0
               %ul.project-docs
