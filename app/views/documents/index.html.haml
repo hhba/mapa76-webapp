@@ -46,18 +46,24 @@
 
     %li.nav-header Documentos
     %li.active
-      %a Todos los documentos
+      %a{href: "#"} Todos los documentos
     %li
-      %a Mis documentos
+      %a{href: "#"} Mis documentos
     -#
       %li
-        %a Mis documentos publicados
+        %a{href: "#"} Mis documentos publicados
 
     - if not @projects.empty?
       %li.nav-header Proyectos
       - @projects.each do |project|
         %li
-          %a= project.name
+          %a{href: "#"}
+            = project.name
+            - if project.documents.count > 0
+              %ul.project-docs
+                - project.documents.each do |document|
+                  %li= document.title
+
 
     %li.nav-header Contexto
     %li
