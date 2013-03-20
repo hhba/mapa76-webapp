@@ -68,5 +68,10 @@ class ProjectsControllerTest < ActionController::TestCase
       assert !@private_documents.include?(@private_doc_user_2)
       assert !@own_documents.include?(@private_doc_added_to_other_project)
     end
+
+    should "not display already added documents" do
+      assert !@public_documents.include?(@public_doc_already_added)
+      assert !@private_documents.include?(@public_doc_already_added)
+    end
   end
 end
