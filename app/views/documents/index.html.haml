@@ -18,7 +18,7 @@
         %strong
           Recuerde que el procesamiento de tareas puede tomar algunos minutos.
     .row-fluid
-      %h2
+      %h3
         = @search.total
         resultados
     .row-fluid
@@ -26,7 +26,7 @@
         %thead
           %tr
             %th{:style => "width: 70px"}
-            %th{:colspan => 2}
+            %th
         %tbody
           - @results.each do |item, document|
             = render "document_row", :item => item, :document => document
@@ -45,24 +45,24 @@
             %button.btn{type: "submit"} Buscar
 
     %li.nav-header Documentos
-    %li.active
-      %a{href: "#"} Todos los documentos
-    %li
-      %a{href: "#"} Mis documentos
+    %li{:class => params[:mine].to_i == 0 ? "active" : nil}
+      = link_to "Todos los documentos", documents_path(params.merge(mine: nil))
+    %li{:class => params[:mine].to_i == 1 ? "active" : nil}
+      = link_to "Mis documentos", documents_path(params.merge(mine: 1))
     -#
       %li
-        %a{href: "#"} Mis documentos publicados
+        = link_to "Mis documentos publicados", documents_path(params.merge(mine: 1, published: 1))
 
     - if not @projects.empty?
       %li.nav-header Proyectos
       - @projects.each do |project|
-        %li
-          %a{href: "#"}
+        %li{:class => params[:project_id] == project.id.to_s ? "active" : nil}
+          = link_to documents_path(params.merge(project_id: project.id, mine: nil)) do
             = project.name
-            - if project.documents.count > 0
-              %ul.project-docs
-                - project.documents.each do |document|
-                  %li= document.title
+          - if project.documents.count > 0
+            %ul.project-docs
+              - project.documents.each do |document|
+                %li= document.title
 
 
     %li.nav-header Contexto

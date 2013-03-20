@@ -1,6 +1,6 @@
 .documents {
-  h4 {
-    display: inline-block;
+  h5 {
+    margin: 4px 0 0 0;
   }
   tr.selected td {
     background-color: #d7eff9;
@@ -14,12 +14,19 @@
       line-height: 15px;
     }
   }
+  .info, .highlights, .tools {
+    margin-bottom: 8px;
+  }
   .heading em,
   .highlights em {
     background-color: yellow;
   }
   .tools a {
     color: #555;
+  }
+  .progress {
+    height: 10px;
+    margin: 0;
   }
 }
 
