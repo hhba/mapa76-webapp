@@ -7,6 +7,12 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_user.projects.find params[:id]
+    @documents = @project.documents
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @documents.to_json(:only => [ :_id, :title ]) }
+    end
   end
 
   def new
