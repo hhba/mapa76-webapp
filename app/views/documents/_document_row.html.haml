@@ -33,7 +33,7 @@
           %i.icon-plus{:title => "Agregar a un proyecto"}
           %span Agregar a un proyecto
       - if single_project_view?
-        = link_to remove_document_project_path(params[:project_id], document_id: document.id), method: :delete, class: "remove_from_project", data: {"document-id" => document.id.to_s, "project-id" => params[:project_id]} do
+        = link_to remove_document_project_path(params[:project_id], document_id: document.id), method: :delete, class: "remove_from_project", data: {"document-id" => document.id.to_s, "project-id" => params[:project_id]}, confirm: "Quiere quitar este documento del proyecto?" do
           %i.icon-remove{:title => "Quitar del proyecto"}
           %span Quitar del proyecto
 

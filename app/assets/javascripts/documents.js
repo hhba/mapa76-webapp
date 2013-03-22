@@ -34,6 +34,15 @@ $(document).ready(function(){
     $(".with-scrollbar").mCustomScrollbar("update");
   });
 
+  $(".documents").on("click", "a.remove_from_project", function(event){
+    var $this = $(this),
+        $parent = $this.parents("tr");
+
+    event.preventDefault();
+    $.post($this.attr("href"), {_method: "delete"}, null, "json");
+    $parent.remove();
+  });
+
   $(".documents").on("click", "a.add_to_project", function(event){
     var $this = $(this),
         $form = $("#add_to_project_form"); 
@@ -41,12 +50,15 @@ $(document).ready(function(){
     $form.data("document-id", $this.data("document-id"));
     $("#addToProjectModal").modal();
   });
+
   $(".documents").on("submit", "#add_to_project_form", function(event){
     var $this = $(this),
         projectId = $this.find("select").val();
     event.preventDefault();
     $.post("/projects/" + projectId + "/add_document", {document_id: $this.data("document-id")}, null, 'json');
+    $("#addToProjectModal").modal('hide');
   });
+
 
   /*
   // Auto-update documents state
