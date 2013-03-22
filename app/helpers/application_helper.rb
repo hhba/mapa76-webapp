@@ -12,4 +12,8 @@ module ApplicationHelper
     document.name = "Fundamentos"
     document
   end
+
+  def single_project_view?
+    params.has_key? :project_id
+  end
 end

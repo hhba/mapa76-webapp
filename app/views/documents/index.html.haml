@@ -11,7 +11,7 @@
         %a{:href => new_document_path}= t "documents.new"
 
 .row-fluid
-  .content
+  .content.documents
     .row-fluid
       .alert.fade.in.alert-success#stillProcessing{:style => 'display: none;'}
         %a.close{:href => '#', 'data-dismiss' => 'alert'}×
@@ -32,6 +32,21 @@
             = render "document_row", :item => item, :document => document
     .row-fluid
       = will_paginate @search, :renderer => BootstrapPagination::Rails
+
+    #addToProjectModal.modal.fade
+      .modal-body
+        %button.close{type: "button", "aria-hidden" => "hidden", data: {dismiss: "modal"}} &times;
+        %form{action: "/", id: "add_to_project_form"}
+          %fieldset
+            %legend
+              Agregar al proyecto
+            %select{name: "project_id"}
+              - current_user.projects.each do |project|
+                %option{value: project.id}
+                  = project.name
+            %br
+            %button.btn#addToProjectButton{type: "submit"}
+              Agregar
 
 - content_for :sidebar do
   %ul.nav.nav-list#sidebar
@@ -64,12 +79,12 @@
               - project.documents.each do |document|
                 %li= document.title
 
-
     %li.nav-header Contexto
     %li
       #context
         .alert.alert-info
           Haga clic en un documento para ver más información
+
 
 %script#documentContextError{:type => "text/template"}
   .alert.alert-error
@@ -77,3 +92,4 @@
 
 %script#documentContext{:type => "text/template"}
   = render 'context_tabs'
+
