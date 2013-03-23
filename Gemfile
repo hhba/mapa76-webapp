@@ -24,6 +24,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-unicorn', :require => false
   gem "better_errors"
   gem 'debugger'
 end
