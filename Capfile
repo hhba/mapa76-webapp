@@ -5,12 +5,12 @@ require "bundler/capistrano"
 
 set :application, "mapa76-webapp"
 
-require "capistrano-unicorn"
-
 set :user, "malev"
 set :domain, "grouppet.com.ar"
 set :environment, "production"
 set :deploy_to, "/home/malev/apps/#{application}"
+
+require "capistrano-unicorn"
 
 role :app, domain
 role :web, domain
@@ -43,6 +43,10 @@ namespace :deploy do
   task :migrate do
     puts "No migrations"
   end
+
+  task :compile_assets do
+    rake "assets"
+  end
 end
 
 #namespace :mi do
@@ -52,13 +56,9 @@ end
 #  end
 #end
 
-task :compile_assets do
-  rake "assets"
-end
-
 after "deploy:update_code", "deploy:create_symlink_shared"
 #after "deploy", "mi:create_indexes"
-after "deploy", "compile_assets"
+after "deploy", "deploy:compile_assets"
 
 #after "deploy:restart", "unicorn:reload" # app IS NOT preloaded
 after "deploy:restart", "unicorn:restart"  # app preloaded
