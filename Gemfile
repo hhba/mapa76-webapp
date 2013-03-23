@@ -36,6 +36,8 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'mongoid'
 gem 'mongoid-pagination'
+gem 'oj'
 gem 'simple_form'
+gem 'rabl'
 gem 'unicorn'
 gem 'will_paginate-bootstrap', :require => "will_paginate-bootstrap"
