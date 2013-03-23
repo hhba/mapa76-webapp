@@ -22,9 +22,13 @@ Mapa76::Application.routes.draw do
     end
   end
 
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :projects
+    end
     resources :documents
     resources :people
+    resources :projects
     resources :registers
   end
 
