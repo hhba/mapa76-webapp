@@ -34,15 +34,6 @@ $(document).ready(function(){
     $(".with-scrollbar").mCustomScrollbar("update");
   });
 
-  $(".documents").on("click", "a.remove_from_project", function(event){
-    var $this = $(this),
-        $parent = $this.parents("tr");
-
-    event.preventDefault();
-    $.post($this.attr("href"), {_method: "delete"}, null, "json");
-    $parent.remove();
-  });
-
   $(".documents").on("click", "a.add_to_project", function(event){
     var $this = $(this),
         $form = $("#add_to_project_form"); 
