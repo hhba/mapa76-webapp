@@ -26,5 +26,7 @@
 //= require_tree ./views
 //  require_tree ./routers
 //= require always
-
 //= require projects
+//= require analize
+//= require documents
+//= require maps
