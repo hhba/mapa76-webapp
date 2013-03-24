@@ -71,7 +71,6 @@ module Mapa76
 
     # Thumbnails and upload paths
     config.thumbnails_path = "/thumbs"
-    config.uploads_path    = "/uploads"
 
     config.after_initialize do
       # Force load of models because after requiring Mapa76::Core models,
