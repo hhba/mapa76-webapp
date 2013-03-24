@@ -4,6 +4,10 @@ module Api
       def show
         @project = Project.find params[:id]
       end
+
+      def timeline
+        @project = Project.find params[:id]
+      end
     end
   end
 end

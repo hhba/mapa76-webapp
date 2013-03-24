@@ -24,11 +24,14 @@ Mapa76::Application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
-      resources :projects
+      resources :projects, only: [:show] do
+        member do
+          get :timeline
+        end
+      end
     end
     resources :documents
     resources :people
-    resources :projects
     resources :registers
   end
 
