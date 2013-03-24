@@ -1,3 +1,19 @@
+class projects.Timeliner
+  constructor: (container)->
+    @container = container
+    @projectId = @container.data("project-id")
+    @initialize()
+
+  initialize: ->
+    @getData()
+  bind: ->
+  render: ->
+  process: (response)->
+  getData: ->
+    $.get "/api/v1/projects/#{@projectId}/timeline", null, ((response) =>
+      @process(response)
+    ), "json"
+
 class projects.Project
   constructor: (projectId) ->
     @projectId = projectId
@@ -149,6 +165,9 @@ $ ->
 
     otherDocumentsList.opposite = ownDocumentsList
     ownDocumentsList.opposite = otherDocumentsList
+
+  if $("#timeline").length
+    timeline = new projects.Timeliner $("#timeline")
 
   if $("#projects").length
     projectsCollection = new projects.ProjectsCollection $("#projects")
