@@ -1,4 +1,5 @@
 load "deploy"
+load "deploy/assets"
 
 require "bundler/capistrano"
 require "rvm/capistrano"
@@ -45,14 +46,14 @@ namespace :deploy do
   end
 
   task :compile_assets do
-    rake "assets"
+    myrake "assets"
   end
 end
 
 #namespace :mi do
 #  desc "Create the indexes defined on your mongoid models"
 #  task :create_indexes do
-#    rake "mi:create_indexes"
+#    myrake "mi:create_indexes"
 #  end
 #end
 
@@ -64,6 +65,6 @@ after "deploy", "deploy:compile_assets"
 after "deploy:restart", "unicorn:restart"  # app preloaded
 
 
-def rake(task)
+def myrake(task)
   run "cd #{current_path} && APP_ENV=production bundle exec rake #{task} --trace"
 end
