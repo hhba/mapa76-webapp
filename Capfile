@@ -1,14 +1,14 @@
 load "deploy"
 
 require "bundler/capistrano"
-#require "rvm/capistrano"
+require "rvm/capistrano"
 
 set :application, "mapa76-webapp"
 
-set :user, "malev"
-set :domain, "grouppet.com.ar"
+set :user, "mapa"
+set :domain, "hhba.info"
 set :environment, "production"
-set :deploy_to, "/home/malev/apps/#{application}"
+set :deploy_to, "/home/mapa/#{application}"
 
 require "capistrano-unicorn"
 
@@ -17,8 +17,8 @@ role :web, domain
 role :db,  domain, :primary => true
 
 set :normalize_asset_timestamps, false
-#set :rvm_ruby_string, '1.9.3-p194@mapa76'
-#set :rvm_type, :user
+set :rvm_ruby_string, '1.9.3-p194'
+set :rvm_type, :user
 
 set :scm, :git
 set :repository, "git://github.com/hhba/mapa76-webapp.git"
