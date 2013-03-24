@@ -47,7 +47,7 @@ namespace :deploy do
 end
 
 after "deploy:update_code", "deploy:create_symlink_shared"
-after "deploy", "db:mongoid:create_indexes"
+#after "deploy", "db:mongoid:create_indexes"
 
 #after "deploy:restart", "unicorn:reload" # app IS NOT preloaded
 after "deploy:restart", "unicorn:restart"  # app preloaded
