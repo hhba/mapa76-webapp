@@ -44,27 +44,10 @@ namespace :deploy do
   task :migrate do
     puts "No migrations"
   end
-
-  task :compile_assets do
-    myrake "assets"
-  end
 end
 
-#namespace :mi do
-#  desc "Create the indexes defined on your mongoid models"
-#  task :create_indexes do
-#    myrake "mi:create_indexes"
-#  end
-#end
-
 after "deploy:update_code", "deploy:create_symlink_shared"
-#after "deploy", "mi:create_indexes"
-after "deploy", "deploy:compile_assets"
+after "deploy", "db:mongoid:create_indexes"
 
 #after "deploy:restart", "unicorn:reload" # app IS NOT preloaded
 after "deploy:restart", "unicorn:restart"  # app preloaded
-
-
-def myrake(task)
-  run "cd #{current_path} && APP_ENV=production bundle exec rake #{task} --trace"
-end
