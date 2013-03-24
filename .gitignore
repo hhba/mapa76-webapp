@@ -18,5 +18,6 @@ pickle-email-*.html
 public/thumbs
 public/uploads
 public/assets
-/config/resque.yml
+config/mongoid.yml
+config/resque.yml
 config/elasticsearch.yml
