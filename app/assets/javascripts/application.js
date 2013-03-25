@@ -24,6 +24,3 @@
 //= require_tree ./collections
 //= require_tree ./views
 //  require_tree ./routers
-//= require analize
-//= require documents
-//= require maps
