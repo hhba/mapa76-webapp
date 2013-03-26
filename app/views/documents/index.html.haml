@@ -1,4 +1,10 @@
 -# encoding: utf-8
+- content_for :styles do
+  :css
+    body {
+      padding-top: 51px;
+    }
+
 - content_for :javascripts do
   = javascript_include_tag "documents.js"
 
@@ -20,7 +26,7 @@
     .row-fluid
       %h3
         = @search.total
-        resultados
+        documentos
     .row-fluid
       %table{:class => 'table documents'}
         %thead
