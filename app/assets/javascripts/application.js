@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require jquery.mCustomScrollbar.concat.min.js
+//= require timeline
 //= require_tree ./plugins
 //= require jquery.ui.draggable
 //= require jquery.ui.droppable
@@ -24,3 +25,6 @@
 //= require_tree ./collections
 //= require_tree ./views
 //  require_tree ./routers
+
+//= require always
+//= require projects
