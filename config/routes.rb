@@ -5,7 +5,14 @@ Mapa76::Application.routes.draw do
     post "blacklist", :on => :member
   end
 
-  resources :projects, :except => [:edit, :update, :delete]
+  resources :projects, :except => [:edit, :update, :delete] do
+    member do
+      get    'timeline'
+      get    'add_documents'
+      post   'add_document'
+      delete 'remove_document'
+    end
+  end
 
   resources :documents do
     get 'status', :on => :collection
@@ -16,7 +23,14 @@ Mapa76::Application.routes.draw do
     end
   end
 
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :projects, only: [:show] do
+        member do
+          get :timeline
+        end
+      end
+    end
     resources :documents
     resources :people
     resources :registers

@@ -2,9 +2,11 @@
   %ul.breadcrumb
     %li
       = link_to "Proyectos", projects_path
-      %span.divider
+      %span.divider /
     %li.active
       = @project.name
 
 %h1
   = @project.name
+
+= link_to "Agregar documentos", add_documents_project_path(@project)

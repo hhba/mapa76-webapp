@@ -9,7 +9,7 @@ class DocumentsControllerTest < ActionController::TestCase
       date_entity = create :date_entity
       where_entity = create :where_entity
       action_entity = create :action_entity, document: @document
-      @document = create :document, :published
+      @document = create :document, :public
       @register = create :fact_register, {
         document: @document,
         person_ids: [name_entity.id],

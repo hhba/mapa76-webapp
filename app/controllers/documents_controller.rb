@@ -8,6 +8,9 @@ class DocumentsController < ApplicationController
       s.query do |q|
         params[:q].blank? ? q.all : q.string(params[:q])
       end
+      if params[:mine].to_i == 1
+        s.filter :term, user_id: [current_user.id]
+      end
       s.highlight :title, *(1..10000).map(&:to_s)
     end
     @results = @search.results.map do |item|
