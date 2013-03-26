@@ -1,6 +1,34 @@
 require 'test_helper'
 
 class DocumentsControllerTest < ActionController::TestCase
+  context "Public documents" do
+    #setup do
+      #Document.create_search_index
+      #@public_document = create :document, :public, title: "public"
+      #@private_document = create :document, title: "private"
+      #Document.search_index.refresh
+    #end
+
+    #teardown do
+      #Document.delete_search_index
+    #end
+
+    should "List public documents"
+    #should "List public documents" do
+      #get :index
+      #assert_response :success
+      #assert_select "h5", "public"
+      #assert_select "tr[data-id=#{@public_document.id}]"
+    #end
+    
+    should "not display private documentos"
+    #should "not display private documentos" do
+      #get :index
+      #assert_response :success
+      #assert_select "tr[data-id=#{@private_document.id}]", false
+    #end
+  end
+
   context "Documents list and show" do
     setup do
       @user = create :user

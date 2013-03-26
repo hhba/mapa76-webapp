@@ -28,10 +28,11 @@
       %a{:href => "/documents/#{document.id}/download"}
         %i.icon-download-alt{:title => "Descargar"}
         %span Descargar
-      - unless single_project_view?
-        = link_to "#", document_id: document.id, class: "add_to_project", data: {"document-id" => document.id.to_s} do
-          %i.icon-plus{:title => "Agregar a un proyecto"}
-          %span Agregar a un proyecto
+      - if current_user
+        - unless single_project_view?
+          = link_to "#", document_id: document.id, class: "add_to_project", data: {"document-id" => document.id.to_s} do
+            %i.icon-plus{:title => "Agregar a un proyecto"}
+            %span Agregar a un proyecto
 
     - if document.completed?
       .hidden{:style => "display: none;"}

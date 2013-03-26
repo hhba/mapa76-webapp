@@ -41,7 +41,7 @@
             %legend
               Agregar al proyecto
             %select{name: "project_id"}
-              - current_user.projects.each do |project|
+              - @projects.each do |project|
                 %option{value: project.id}
                   = project.name
             %br
@@ -60,13 +60,14 @@
             %button.btn{type: "submit"} Buscar
 
     %li.nav-header Documentos
-    %li{:class => params[:mine].to_i == 0 ? "active" : nil}
-      = link_to "Todos los documentos", documents_path(params.merge(mine: nil))
-    %li{:class => params[:mine].to_i == 1 ? "active" : nil}
-      = link_to "Mis documentos", documents_path(params.merge(mine: 1))
-    -#
-      %li
-        = link_to "Mis documentos publicados", documents_path(params.merge(mine: 1, published: 1))
+    - if current_user
+      %li{:class => params[:mine].to_i == 0 ? "active" : nil}
+        = link_to "Todos los documentos", documents_path(params.merge(mine: nil))
+      %li{:class => params[:mine].to_i == 1 ? "active" : nil}
+        = link_to "Mis documentos", documents_path(params.merge(mine: 1))
+      -#
+        %li
+          = link_to "Mis documentos publicados", documents_path(params.merge(mine: 1, published: 1))
 
     - if not @projects.empty?
       %li.nav-header Proyectos

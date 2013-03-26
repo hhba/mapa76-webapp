@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:create]
 
   def index
     @page = params[:page] || 1
@@ -16,7 +16,7 @@ class DocumentsController < ApplicationController
     @results = @search.results.map do |item|
       [item, item.load]
     end
-    @projects = current_user.projects
+    @projects = current_user ? current_user.projects : []
   end
 
   def new
