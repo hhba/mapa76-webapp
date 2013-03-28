@@ -30,7 +30,7 @@ $(document).ready(function(){
     return false;
   });
 
-  $("#context .nav a").live("click", function() {
+  $("#context .nav a").on("click", function() {
     $(".with-scrollbar").mCustomScrollbar("update");
   });
 
@@ -40,6 +40,22 @@ $(document).ready(function(){
     event.preventDefault();
     $form.data("document-id", $this.data("document-id"));
     $("#addToProjectModal").modal();
+  });
+
+  $(".documents").on("click", "a.remove_from_project", function(event) {
+    event.preventDefault();
+    var $this = $(this);
+
+    var doc_tr = $this.parents("tr");
+    $.ajax({
+      url: "/projects/" + $this.data("project-id") + "/remove_document",
+      type: "DELETE",
+      data: { document_id: $this.data("document-id") },
+      success: function() {
+        doc_tr.remove();
+      }
+    });
+    doc_tr.hide();
   });
 
   $(".documents").on("submit", "#add_to_project_form", function(event){
@@ -68,7 +84,7 @@ $(document).ready(function(){
 
   /*
   // Blacklist
-  $(".blacklist a").live("click", function(event){
+  $(".blacklist a").on("click", function(event){
     event.preventDefault();
     var $this = $(this);
     var answer = confirm("Enviar " + $this.data("name") + "a la blacklist?");

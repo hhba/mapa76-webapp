@@ -29,7 +29,11 @@
         %i.icon-download-alt{:title => "Descargar"}
         %span Descargar
       - if current_user
-        - unless single_project_view?
+        - if single_project_view?
+          = link_to "#", document_id: document.id, class: "remove_from_project", data: { "project-id" => params[:project_id], "document-id" => document.id.to_s } do
+            %i.icon-minus{:title => "Quitar del proyecto"}
+            %span Quitar del proyecto
+        - else
           = link_to "#", document_id: document.id, class: "add_to_project", data: {"document-id" => document.id.to_s} do
             %i.icon-plus{:title => "Agregar a un proyecto"}
             %span Agregar a un proyecto
