@@ -10,7 +10,7 @@ class projects.ProjectsCollection
 
   bind: ->
     self = @
-    @container.on "click", "a", (event) ->
+    @container.on "click", ".nav a", (event) ->
       event.preventDefault()
       self.handleClick(@)
     @template = _.template $("#projectsList").html()
