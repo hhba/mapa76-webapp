@@ -43,9 +43,9 @@ class ProjectsControllerTest < ActionController::TestCase
       @project_1 = FactoryGirl.create :project, :user_ids => [@user_1.id]
       @project_2 = FactoryGirl.create :project, :user_ids => [@user_1.id]
 
-      @private_doc_user_1 = FactoryGirl.create :document, public: false, user: @user_1
-      @private_doc_user_2 = FactoryGirl.create :document, public: false, user: @user_2
-      @private_doc_added_to_other_project = FactoryGirl.create :document, public: false
+      @private_doc_user_1 = FactoryGirl.create :document, :private, user: @user_1
+      @private_doc_user_2 = FactoryGirl.create :document, :private, user: @user_2
+      @private_doc_added_to_other_project = FactoryGirl.create :document, :private
       @project_2.documents << @private_doc_added_to_other_project
 
       @public_doc = FactoryGirl.create :document, :public

@@ -8,5 +8,9 @@ FactoryGirl.define do
     trait :public do
       public true
     end
+
+    trait :private do
+      public false
+    end
   end
 end
