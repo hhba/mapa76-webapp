@@ -30,7 +30,7 @@ $(document).ready(function(){
     return false;
   });
 
-  $("#context .nav a").live("click", function() {
+  $("#context").on("click", ".nav a", function(){
     $(".with-scrollbar").mCustomScrollbar("update");
   });
 
