@@ -78,9 +78,9 @@ class DocumentsController < ApplicationController
       end
     end
 
-    # FIXME For now, #send_data here, ideally this should be handled by the
+    # FIXME For now, use #send_file, ideally this should be handled by the
     # assets server (e.g. nginx).
-    send_data open(path), filename: request.path
+    send_file Rails.root.join("public", "file.gif"), type: "image/gif", disposition: "inline"
   rescue Mongoid::Errors::DocumentNotFound
     render :text => nil, :status => 404
   end
