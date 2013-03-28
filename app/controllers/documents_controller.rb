@@ -80,9 +80,7 @@ class DocumentsController < ApplicationController
 
     # FIXME For now, #send_data here, ideally this should be handled by the
     # assets server (e.g. nginx).
-    File.open(path, "rb") do |fd|
-      send_data fd, filename: request.path
-    end
+    send_data open(path), filename: request.path
   rescue Mongoid::Errors::DocumentNotFound
     render :text => nil, :status => 404
   end
