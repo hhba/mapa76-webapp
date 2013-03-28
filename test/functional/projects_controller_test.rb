@@ -21,15 +21,17 @@ class ProjectsControllerTest < ActionController::TestCase
     end
 
     should "Add a document to a project" do
-      assert_difference '@project.documents.count' do
+      assert_difference '@project.documents.length' do
         post :add_document, id: @project.id, document_id: @document_2.id
+        @project.reload
       end
     end
 
     should "Remove a document from a project" do
       @project.documents << @document_1
-      assert_difference '@project.documents.count', -1 do
+      assert_difference '@project.documents.length', -1 do
         delete :remove_document, id: @project.id, document_id: @document_1.id
+        @project.reload
       end
     end
   end
