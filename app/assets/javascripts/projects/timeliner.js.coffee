@@ -1,17 +1,47 @@
 class projects.Timeliner
-  constructor: (container)->
-    @container = container
-    @projectId = @container.data("project-id")
+  constructor: (elementId)->
+    @elementId = elementId
+    @bind()
     @initialize()
+
+  bind: ->
+    @container = $("##{@elementId}")
+    @projectId = @container.data("project-id")
+    @timeliner = new links.Timeline document.getElementById(@elementId)
 
   initialize: ->
     @getData()
-  bind: ->
+    @render()
+
   render: ->
+    @timeliner.draw @parsedDates, @options()
+
+  options: ->
+    {
+      width: "100%"
+      style: "box"
+    }
+
   process: (response)->
     @name = response.name
-    @description = response.descriptin
-    console.log(response)
+    @description = response.description
+    @parsedDates = _.flatten @processDocuments(response.documents)
+
+  processDocuments: (documents) ->
+    _.map documents, (document) =>
+      @processDocument(document.document)
+
+  processDocument: (document) ->
+    _.map document.dates_found, (date) =>
+      {
+        group:   document.title
+        start:   @processDate(date.dates_found)
+        link:    date.dates_found.link
+        content: date.dates_found.text
+      }
+
+  processDate: (date) ->
+    new Date(date.date.year, date.date.month, date.date.day)
 
   getData: ->
     $.get "/api/v1/projects/#{@projectId}/timeline", null, ((response) =>

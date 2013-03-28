@@ -1,4 +1,4 @@
 $ ->
   return unless $("#timeline").length
 
-  timeline = new projects.Timeliner $("#timeline")
+  window.timeline = new projects.Timeliner "timeline"
