@@ -11,7 +11,6 @@ class projects.Timeliner
 
   initialize: ->
     @getData()
-    @render()
 
   render: ->
     @timeliner.draw @parsedDates, @options()
@@ -22,10 +21,11 @@ class projects.Timeliner
       style: "box"
     }
 
-  process: (response)->
+  process: (response) ->
     @name = response.name
     @description = response.description
     @parsedDates = _.flatten @processDocuments(response.documents)
+    @render()
 
   processDocuments: (documents) ->
     _.map documents, (document) =>
@@ -41,7 +41,11 @@ class projects.Timeliner
       }
 
   processDate: (date) ->
-    new Date(date.date.year, date.date.month, date.date.day)
+    new Date(
+      parseInt(date.date.year, 10),
+      parseInt(date.date.month, 10) - 1,
+      parseInt(date.date.day, 10)
+    )
 
   getData: ->
     $.get "/api/v1/projects/#{@projectId}/timeline", null, ((response) =>
