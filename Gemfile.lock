@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/hhba/mapa76-core.git
-  revision: 0ae954f9a5647b02e8c02801395a66a7ce6d5dfc
+  revision: ab1024a9d412bad3ea0e5eb1193bb657dcfa99dd
   specs:
     mapa76-core (0.0.1)
       mongoid (~> 3.0.14)
@@ -40,6 +40,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    ansi (1.4.3)
     arel (3.0.2)
     backbone-on-rails (1.0.0.0)
       eco
@@ -161,7 +162,7 @@ GEM
       activesupport
       mongoid
     mono_logger (1.0.0)
-    moped (1.4.4)
+    moped (1.4.5)
     multi_json (1.7.2)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
@@ -252,9 +253,10 @@ GEM
       ref
     thor (0.18.0)
     tilt (1.3.6)
-    tire (0.5.5)
+    tire (0.5.7)
       activemodel (>= 3.0)
       activesupport
+      ansi
       hashr (~> 0.0.19)
       multi_json (~> 1.3)
       rake
