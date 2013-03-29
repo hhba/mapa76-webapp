@@ -3,7 +3,7 @@
     %a.thumbnail{:href => "#"}
       %img{:src => thumbnail_url(document)}
   %td
-    %h4.title
+    %h5.title
       %a{:href => "#"}= item.highlight.try(:[], :title).try(:first).try(:html_safe) || document.title
 
     .info

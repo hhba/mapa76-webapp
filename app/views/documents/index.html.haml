@@ -21,11 +21,16 @@
         %strong
           Recuerde que el procesamiento de tareas puede tomar algunos minutos.
     .row-fluid
-      - if search_page?
+      - if project_page?
         %h4
+          Proyecto:
+          = @project.name
+          = "(#{@project.documents.count})"
+      - if search_page?
+        .well.well-small
           Se han encontrado
           = @search.total
-          documentos
+          documentos.
     .row-fluid
       %table{:class => 'table documents'}
         %thead
@@ -92,7 +97,7 @@
           <% _.each(project.documents, function(document){ %>
             <li><%= document.document.title %></li>
           <% }); %>
-          <a href="/projects/<%= project._id %>/timeline">Ver timeline</a>
+          <a href="/projects/<%= project._id %>/timeline">Ver línea de tiempo</a>
         </ul>
       </li>
     <% }); %>

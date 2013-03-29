@@ -49,4 +49,8 @@ module DocumentsHelper
   def search_page?
     controller_name == "documents" && params.has_key?(:q)
   end
+
+  def project_page?
+    controller_name == "documents" && params.has_key?(:project_id)
+  end
 end

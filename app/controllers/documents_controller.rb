@@ -17,6 +17,7 @@ class DocumentsController < ApplicationController
       [item, item.load]
     end
     @projects = current_user ? current_user.projects : []
+    @project = Project.find params[:project_id] if params[:project_id]
     @documents_count = Document.count
     @my_documents_count = current_user.documents.count if current_user
   end
