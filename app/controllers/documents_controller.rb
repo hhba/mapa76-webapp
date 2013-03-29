@@ -17,6 +17,8 @@ class DocumentsController < ApplicationController
       [item, item.load]
     end
     @projects = current_user ? current_user.projects : []
+    @documents_count = Document.count
+    @my_documents_count = current_user.documents.count if current_user
   end
 
   def new

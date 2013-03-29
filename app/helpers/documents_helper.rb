@@ -45,4 +45,8 @@ module DocumentsHelper
   def active_on_new_document_page
     new_document_page? ? "active" : nil
   end
+
+  def search_page?
+    controller_name == "documents" && params.has_key?(:q)
+  end
 end
