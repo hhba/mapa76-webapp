@@ -16,7 +16,7 @@
         %ul.documents
           - @documents.each do |document|
             %li
-              = link_to document.title, document
+              = link_to document.title, comb_document_path(document)
     .row-fluid.intro-graph
       .span2  
       .span3
