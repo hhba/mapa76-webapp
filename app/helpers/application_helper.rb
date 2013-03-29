@@ -32,5 +32,13 @@ module ApplicationHelper
   def named_entity_link(ne)
     "/documents/#{ne.document_id}/comb#"
   end
+
+  def active_on_documents
+    controller_name == "documents" ? 'active' : nil
+  end
+
+  def active_on_projects
+    controller_name == "projects" ? 'active' : nil
+  end
 end
 
