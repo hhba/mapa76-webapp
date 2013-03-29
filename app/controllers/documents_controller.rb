@@ -11,6 +11,9 @@ class DocumentsController < ApplicationController
       if params[:mine].to_i == 1
         s.filter :term, user_id: [current_user.id]
       end
+      if params[:project_id]
+        s.filter :term, project_ids: [params[:project_id]]
+      end
       s.highlight :title, *(1..10000).map(&:to_s)
     end
     @results = @search.results.map do |item|
