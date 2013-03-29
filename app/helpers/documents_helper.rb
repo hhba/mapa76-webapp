@@ -21,4 +21,28 @@ module DocumentsHelper
       thumbnail:       thumbnail_url(document),
     }
   end
+
+  def documents_page?
+    current_page?(documents_path) and !params.has_key?(:mine) and !params.has_key?(:project_id)
+  end
+
+  def my_documents_page?
+    params.has_key?(:mine)
+  end
+
+  def new_document_page?
+    current_page? new_document_path
+  end
+
+  def active_on_documents_page
+    documents_page? ? "active" : nil
+  end
+
+  def active_on_my_documents_page
+    my_documents_page? ? "active" : nil
+  end
+
+  def active_on_new_document_page
+    new_document_page? ? "active" : nil
+  end
 end

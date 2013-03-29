@@ -10,6 +10,9 @@ es:
   home: "Inicio"
   projects: "Proyectos"
   documents: "Documentos"
+  all_documents: "Ver todos"
+  my_documents: "Mis documentos"
+  new_document: "Nuevo"
 
   date:
     abbr_day_names:
