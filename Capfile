@@ -2,14 +2,15 @@ load "deploy"
 load "deploy/assets"
 
 require "bundler/capistrano"
-require "rvm/capistrano"
+require "bundler/capistrano"
+set :bundle_flags, "--deployment --quiet --binstubs"
 
 set :application, "mapa76-webapp"
 
-set :user, "mapa"
-set :domain, "hhba.info"
+set :user, "deployer"
+set :domain, "184.173.160.186"
 set :environment, "production"
-set :deploy_to, "/home/mapa/#{application}"
+set :deploy_to, "/home/deployer/apps/#{application}"
 
 require "capistrano-unicorn"
 
@@ -18,7 +19,7 @@ role :web, domain
 role :db,  domain, :primary => true
 
 set :normalize_asset_timestamps, false
-set :rvm_ruby_string, '1.9.3-p194'
+set :rvm_ruby_string, '1.9.3-p395'
 set :rvm_type, :user
 
 set :scm, :git
