@@ -15,7 +15,7 @@ group :assets do
   gem 'bootswatch-rails'
 end
 
-group :development, :test do
+group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'guard-test'
@@ -28,9 +28,12 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-unicorn', :require => false
   gem 'rvm-capistrano'
-
   gem "better_errors"
   gem 'debugger'
+end
+
+group :development, :test do
+  gem 'rb-inotify', '~> 0.9'
 end
 
 gem 'devise'
