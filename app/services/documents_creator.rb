@@ -5,11 +5,6 @@ class DocumentsCreator
     @strategy = pick_strategy
   end
 
-  def pick_strategy
-    strategy_klass = STRATEGIES.find { |klass| creator(klass).can_create?(@document_params) }
-    creator(strategy_klass).new @document_params
-  end
-
   def valid?
     @strategy.valid?
   end
@@ -18,7 +13,14 @@ class DocumentsCreator
     @strategy.save
   end
 
+private
+
   def creator(klass)
     "Creator::#{klass}".constantize
+  end
+
+  def pick_strategy
+    strategy_klass = STRATEGIES.find { |klass| creator(klass).can_create?(@document_params) }
+    creator(strategy_klass).new @document_params
   end
 end
