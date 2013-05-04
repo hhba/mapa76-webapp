@@ -44,14 +44,14 @@ class DocumentsCreatorTest < ActiveSupport::TestCase
     assert_equal false, documents_creator.save
   end
 
-  #should "Create a single dropbox document with valid params" do
-    #documents_creator = DocumentsCreator.new @single_document_params
+  should "Create a single dropbox document with valid params" do
+    documents_creator = DocumentsCreator.new @single_document_params
 
-    #assert documents_creator.valid?
-    #assert_difference(Document.count, 1) do
-      #documents_creator.save
-    #end
-  #end
+    assert documents_creator.valid?
+    assert_difference(Document.count, 1) do
+      documents_creator.save
+    end
+  end
 
   #should "Not create document with invalid params" do
     #documents_creator = DocumentsCreator.new @invalid_params
