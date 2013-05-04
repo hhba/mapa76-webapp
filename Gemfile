@@ -18,6 +18,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'fakeweb'
   gem 'guard-test'
   gem 'ruby-prof'
   gem 'shoulda-context'
