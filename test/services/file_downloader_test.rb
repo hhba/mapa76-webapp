@@ -11,7 +11,7 @@ class FileDownladerTest < ActiveSupport::TestCase
   end
 
   should "Download a file" do
-    file_dowloader = FileDownloader.new @link 
+    file_dowloader = FileDownloader.new @link
     assert_instance_of Tempfile, file_dowloader.download
   end
 end
