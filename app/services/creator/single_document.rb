@@ -19,6 +19,7 @@ module Creator
 
     def save
       @document.save
+      @document.enqueue_process
     end
   end
 end
