@@ -17,5 +17,11 @@
         = f.input :description
         = f.input :category, :collection => %w(Alegato Articulo Fundamentos Pericia Sentencia Testimonio Veredicto otro)
         = f.input :file, :as => :file
+        .input.string.optional
+          %label.string.optional
+            Or choose some files from your dropbox
+          %input.string.optional{name: "document[selected-files]", style: "visibility: hidden;", type: "dropbox-chooser", "data-multiselect" => true, "data-link-type" => "direct"}
         = f.input :public, :as => :checked_boolean
         = f.button :submit
+
+%script#dropboxjs{"data-app-key" => "throly54gy6mhm9", :src => "https://www.dropbox.com/static/api/1/dropins.js", :type => "text/javascript"}
