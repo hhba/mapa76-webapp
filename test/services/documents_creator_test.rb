@@ -19,12 +19,12 @@ class DocumentsCreatorTest < ActiveSupport::TestCase
       files: [
         "https://dl.dropboxusercontent.com/1/view/q10jqqxrpfyxl4x/2011.pdf",
         "https://dl.dropboxusercontent.com/1/view/q10jqqxrpfyxl4x/2012.pdf"
-      ] 
+      ]
     }
     @single_document_params = {
       files: [
         "https://dl.dropboxusercontent.com/1/view/q10jqqxrpfyxl4x/2011.pdf"
-      ] 
+      ]
     }
   end
 
@@ -53,18 +53,18 @@ class DocumentsCreatorTest < ActiveSupport::TestCase
     end
   end
 
-  #should "Not create document with invalid params" do
-    #documents_creator = DocumentsCreator.new @invalid_params
-    #assert_equal documents_creator.valid?, false
-    #assert_equal documents_creator.save, false
-    #assert_instance_of documents_creator.errors, ActiveModel::Errors
-  #end
-  
   #should "Create a group of documents" do
     #documents_creator = DocumentsCreator.new @multiple_documents_params
     #assert documents_creator.valid?
     #assert_difference(Document.count, 2) do
       #documents_creator.save
     #end
+  #end
+
+  #should "Not create document with invalid params" do
+    #documents_creator = DocumentsCreator.new @invalid_params
+    #assert_equal documents_creator.valid?, false
+    #assert_equal documents_creator.save, false
+    #assert_instance_of documents_creator.errors, ActiveModel::Errors
   #end
 end

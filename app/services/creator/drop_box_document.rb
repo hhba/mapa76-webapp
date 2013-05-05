@@ -5,26 +5,19 @@ module Creator
     end
 
     def initialize(document_params)
-      @documents = []
       @document_params = document_params
-      generate_documents
     end
 
-    def generate_documents
-      @documents = @document_params[:files].map do |file|
-        download_file = FileDownloader.new file
-        document = Document.new original_filename: download_file.filename
-        document.original_filename = download_file.filename
-        document
-      end
+    def document_links
+      @document_params[:files]
     end
 
     def valid?
-      @documents.all? { |document| document.valid? }
+      true
     end
 
     def save
-      @documents.each { |document| document.save }
+      Resque.enqueue(DropBoxCreatorTask, document_links)
     end
   end
 end
