@@ -20,6 +20,7 @@ Mapa76::Application.routes.draw do
       get 'context'
       get 'comb'
       get 'download'
+      get 'export'
     end
   end
 

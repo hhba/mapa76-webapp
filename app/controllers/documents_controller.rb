@@ -90,4 +90,16 @@ class DocumentsController < ApplicationController
   rescue Mongoid::Errors::DocumentNotFound
     render :text => nil, :status => 404
   end
+
+  def export
+    @document = Document.find(params[:id])
+    cls = params[:class]
+    if %w{ people dates places organizations }.include?(cls)
+      send_data @document.public_send("export_#{cls}"),
+                type: 'text/csv',
+                filename: "#{@document.original_filename}__#{cls}.csv"
+    end
+  rescue Mongoid::Errors::DocumentNotFound
+    render text: nil, status: 404
+  end
 end
