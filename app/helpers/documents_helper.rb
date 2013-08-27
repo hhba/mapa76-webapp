@@ -19,6 +19,7 @@ module DocumentsHelper
       completed:       document.completed?,
       generation_time: document.id.generation_time.strftime("%d/%m/%y"),
       thumbnail:       thumbnail_url(document),
+      failed:          document.failed?,
     }
   end
 
