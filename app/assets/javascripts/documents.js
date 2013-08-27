@@ -70,11 +70,12 @@ $(document).ready(function(){
   });
 
 
-  /*
   // Auto-update documents state
   function checkDocumentsStatuses() {
     $.get("/documents/status", null, function(data){
-      $('table.documents tbody').html(Mustache.render(template, {documents: data}));
+      _.each(data, function(doc){
+        $("[data-id='" + doc.id + "']").find(".bar").css("width", doc.percentage + "%");
+      });
     }, 'json');
     setTimeout(checkDocumentsStatuses, 15000 );
   }
@@ -83,7 +84,6 @@ $(document).ready(function(){
     var template = $("#documentRowTemplate").html();
     checkDocumentsStatuses();
   }
-  */
 
   /*
   // Blacklist
