@@ -5,6 +5,12 @@
   tr.selected td {
     background-color: #d7eff9;
   }
+  tr.failed td {
+    background-color: #FFB4B4;
+    .title a {
+      color: #555;
+    }
+  }
   .info {
     margin-right: 1em;
   }
