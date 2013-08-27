@@ -1,4 +1,4 @@
-%tr{:"data-id" => document.id}
+%tr{:"data-id" => document.id, :class => (document.failed? && 'failed')}
   %td{:style => "width: 70px"}
     %a.thumbnail{:href => "#"}
       %img{:src => thumbnail_url(document)}
