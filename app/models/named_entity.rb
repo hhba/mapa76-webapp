@@ -11,4 +11,9 @@ class NamedEntity < Citation
       :timestamp => timestamp
     }
   end
+
+  def href
+    # I'm sorry for this:
+    Rails.application.routes.url_helpers.comb_document_url(:id => document_id, :host => "mapa76.info", :anchor => page_num)
+  end
 end
