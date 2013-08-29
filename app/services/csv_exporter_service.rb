@@ -38,8 +38,11 @@ private
     CSV.generate do |csv|
       csv << keys
       finders.each do |finder|
+        text = document.processed_text
         document.public_send(finder).only(*keys).each do |ne|
-          csv << keys.map { |k| ne.respond_to?(k) ? ne.public_send(k) : nil }
+          row = keys.map { |k| ne.respond_to?(k) ? ne.public_send(k) : nil }
+          row << ne.context(70, text)
+          csv << row
         end
       end
     end
