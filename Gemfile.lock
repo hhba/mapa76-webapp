@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/hhba/mapa76-core.git
-  revision: bd22877a2fc35dc77cccae0c739b647d390e9d4f
+  revision: c912b9dd397f233379868e891dec3c3a65b7401f
   specs:
     mapa76-core (0.0.1)
       mongoid (~> 3.0.14)
