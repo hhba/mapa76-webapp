@@ -37,11 +37,11 @@ private
     finders = Array(finders)
     CSV.generate do |csv|
       csv << keys
+      #text = document.processed_text
       finders.each do |finder|
-        text = document.processed_text
         document.public_send(finder).only(*keys).each do |ne|
           row = keys.map { |k| ne.respond_to?(k) ? ne.public_send(k) : nil }
-          row << ne.context(70, text)
+          #row << ne.context(70, text)
           csv << row
         end
       end
